@@ -1,0 +1,27 @@
+# CMakePresets.json File
+CMakeUserPresets.json
+
+# Build Directory
+out/
+build/
+
+# third-party dependencies
+third_party/
+
+# Compile Commands file
+compile_commands.json
+
+# Vscode Configuration
+.vscode/
+
+# Helix Configuration
+.helix/
+
+# Cache Directory
+*cache/
+
+# Youcompleteme Configuration
+.ycm_extra_conf.py
+
+# Force Include Conf
+!developers/**
