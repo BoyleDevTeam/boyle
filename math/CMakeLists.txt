@@ -22,5 +22,17 @@ add_test(
   COMMAND vec3_test
 )
 
+add_executable(cubic_interpolation_test cubic_interpolation_test.cpp)
+target_link_libraries(cubic_interpolation_test
+  PRIVATE
+    doctest::doctest
+    spdlog::spdlog
+)
+
+add_test(
+  NAME cubic_interpolation_test
+  COMMAND cubic_interpolation_test
+)
+
 add_subdirectory(qp_solvers)
 add_subdirectory(sparse_matrix)
