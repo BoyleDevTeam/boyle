@@ -34,5 +34,17 @@ add_test(
   COMMAND cubic_interpolation_test
 )
 
+add_executable(quintic_interpolation_test quintic_interpolation_test.cpp)
+target_link_libraries(quintic_interpolation_test
+  PRIVATE
+    doctest::doctest
+    spdlog::spdlog
+)
+
+add_test(
+  NAME quintic_interpolation_test
+  COMMAND quintic_interpolation_test
+)
+
 add_subdirectory(qp_solvers)
 add_subdirectory(sparse_matrix)
