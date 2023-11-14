@@ -27,3 +27,18 @@ add_test(
   NAME piecewise_cubic_curve2_test
   COMMAND piecewise_cubic_curve2_test
 )
+
+add_executable(piecewise_quintic_curve2_test piecewise_quintic_curve2_test.cpp)
+target_link_libraries(piecewise_quintic_curve2_test
+  PRIVATE
+    Boost::serialization
+    cxxopts::cxxopts
+    doctest::doctest
+    Matplot++::matplot
+    spdlog::spdlog
+)
+
+add_test(
+  NAME piecewise_quintic_curve2_test
+  COMMAND piecewise_quintic_curve2_test
+)
