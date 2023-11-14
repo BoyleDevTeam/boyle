@@ -29,9 +29,15 @@ add_compile_options(
 set(CPM_SOURCE_CACHE third_party)
 set(CPM_USE_LOCAL_PACKAGES True)
 
+add_compile_definitions(
+    SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE
+    DOCTEST_CONFIG_SUPER_FAST_ASSERTS
+)
+
 include(CTest)
 enable_testing()
 
 include(cmake/CPM.cmake)
+include(cmake/third_party.cmake)
 
 include_directories(${PROJECT_SOURCE_DIR})
