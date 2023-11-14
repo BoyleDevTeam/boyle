@@ -21,3 +21,5 @@ add_test(
   NAME vec3_test
   COMMAND vec3_test
 )
+
+add_subdirectory(sparse_matrix)
