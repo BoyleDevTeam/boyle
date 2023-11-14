@@ -41,3 +41,5 @@ include(cmake/CPM.cmake)
 include(cmake/third_party.cmake)
 
 include_directories(${PROJECT_SOURCE_DIR})
+
+add_subdirectory(common)
