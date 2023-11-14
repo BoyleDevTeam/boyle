@@ -36,3 +36,16 @@ add_test(
   NAME csc_matrix_test
   COMMAND csc_matrix_test
 )
+
+add_executable(csr_matrix_test csr_matrix_test.cpp)
+target_link_libraries(csr_matrix_test
+  PRIVATE
+    Boost::serialization
+    doctest::doctest
+    spdlog::spdlog
+)
+
+add_test(
+  NAME csr_matrix_test
+  COMMAND csr_matrix_test
+)
