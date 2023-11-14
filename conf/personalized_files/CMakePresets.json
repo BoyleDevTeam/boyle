@@ -1,0 +1,81 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "gcc-linux_x64",
+            "displayName": "GCC 13.1.1 x86_64-pc-linux-gnu",
+            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_C_FLAGS": "-march=native",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_CXX_FLAGS": "-march=native",
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        },
+        {
+            "name": "clang-linux_x64",
+            "displayName": "Clang 15.0.7 x86_64-pc-linux-gnu",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_C_FLAGS": "-march=native",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_CXX_FLAGS": "-march=native",
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-linux_x64",
+            "displayName": "GCC 13.1.1 x86_64-pc-linux-gnu",
+            "configurePreset": "gcc-linux_x64",
+            "inheritConfigureEnvironment": true,
+            "targets": "all",
+            "jobs": 4
+        },
+        {
+            "name": "clang-linux_x64",
+            "displayName": "Clang 15.0.7 x86_64-pc-linux-gnu",
+            "configurePreset": "clang-linux_x64",
+            "inheritConfigureEnvironment": true,
+            "targets": "all",
+            "jobs": 4
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "gcc-linux_x64",
+            "displayName": "GCC 13.1.1 x86_64-pc-linux-gnu",
+            "configurePreset": "gcc-linux_x64",
+            "inheritConfigureEnvironment": true,
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 4
+            }
+        },
+        {
+            "name": "clang-linux_x64",
+            "displayName": "Clang 15.0.7 x86_64-pc-linux-gnu",
+            "configurePreset": "clang-linux_x64",
+            "inheritConfigureEnvironment": true,
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 4
+            }
+        }
+    ]
+}

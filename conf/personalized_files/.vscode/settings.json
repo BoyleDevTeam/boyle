@@ -1,0 +1,93 @@
+{
+    // Basic Settings
+    "update.mode": "none",
+    // "workbench.colorTheme": "Material Theme Darker",
+    // "workbench.iconTheme": "eq-material-theme-icons-darker",
+    // "editor.fontFamily": "'SauceCodePro Nerd Font Mono'",
+    // "editor.fontWeight": "600",
+    // "editor.fontSize": 12,
+    "editor.rulers": [100],
+    "editor.wordWrap": "on",
+    "editor.cursorStyle": "line",
+    "editor.lineNumbers": "on",
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.wordWrapColumn": 100,
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.minimap.enabled": false,
+    "editor.inlayHints.enabled": "off",
+    "files.insertFinalNewline": true,
+    // "terminal.integrated.defaultProfile.linux": "zsh",
+    // "terminal.integrated.gpuAcceleration": "on",
+    // "terminal.integrated.fontWeight": "600",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    // Extension Settings
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.intelliSenseCachePath": "/tmp/vscode-cpptools",
+    "C_Cpp.autocomplete": "disabled",
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.default.cStandard": "gnu17",
+    "C_Cpp.default.cppStandard": "gnu++20",
+    "C_Cpp.doxygen.generateOnType": false,
+    "cmake.parallelJobs": 8,
+    "cmake.configureOnOpen": true,
+    "cmake.skipConfigureIfCachePresent": true,
+    "clangd.detectExtensionConflicts": false,
+    "clangd.arguments": [
+        "--log=verbose",
+        "--pretty",
+        "--all-scopes-completion",
+        "--completion-style=bundled",
+        "--header-insertion=never",
+        "--header-insertion-decorators",
+        "--function-arg-placeholders",
+        "--background-index",
+        "--clang-tidy",
+        "--fallback-style=Microsoft",
+        "-j=8",
+        "--pch-storage=memory",
+        "--compile-commands-dir=out/build/gcc-linux_x64"
+    ],
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
+    "doxdocgen.file.copyrightTag": [
+        "@copyright Copyright (c) {year} Tiny-PnC Development Team",
+        "           All rights reserved."
+    ],
+    // Language Settings
+    "[cpp]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.wordBasedSuggestions": false,
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.python",
+        "diffEditor.ignoreTrimWhitespace": false,
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.wordBasedSuggestions": false
+    },
+    "[cmake]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "ms-vscode.cmake-tools"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    }
+}
