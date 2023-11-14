@@ -27,3 +27,18 @@ add_test(
   NAME piecewise_cubic_function1_test
   COMMAND piecewise_cubic_function1_test
 )
+
+add_executable(piecewise_quintic_function1_test piecewise_quintic_function1_test.cpp)
+target_link_libraries(piecewise_quintic_function1_test
+  PRIVATE
+    Boost::serialization
+    cxxopts::cxxopts
+    doctest::doctest
+    Matplot++::matplot
+    spdlog::spdlog
+)
+
+add_test(
+  NAME piecewise_quintic_function1_test
+  COMMAND piecewise_quintic_function1_test
+)
