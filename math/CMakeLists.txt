@@ -22,4 +22,5 @@ add_test(
   COMMAND vec3_test
 )
 
+add_subdirectory(qp_solvers)
 add_subdirectory(sparse_matrix)
