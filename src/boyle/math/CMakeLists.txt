@@ -21,9 +21,17 @@ target_link_libraries(math_chebyshev
 )
 add_library(math::chebyshev ALIAS math_chebyshev)
 
+add_header_only_library(math_duplet duplet.hpp)
+target_link_libraries(math_duplet
+  INTERFACE
+    Boost::serialization
+)
+add_library(math::duplet ALIAS math_duplet)
+
 install_libraries(
   math_type_traits
   math_concepts
   math_array
   math_chebyshev
+  math_duplet
 )
