@@ -24,6 +24,10 @@ include(cmake/utils.cmake)
 include(CTest)
 enable_testing()
 
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
+add_subdirectory(src)
+
 file(CREATE_LINK
   "${CMAKE_BINARY_DIR}/compile_commands.json"
   "${CMAKE_SOURCE_DIR}/compile_commands.json"
