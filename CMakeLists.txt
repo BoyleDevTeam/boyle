@@ -18,6 +18,7 @@ set(CPM_SOURCE_CACHE third_party)
 set(CPM_USE_LOCAL_PACKAGES True)
 
 include(cmake/CPM.cmake)
+include(cmake/third_party.cmake)
 include(cmake/utils.cmake)
 
 include(CTest)
