@@ -1,0 +1,164 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 30,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "gcc-archlinux_x64-debug",
+            "displayName": "GCC Arch Linux x86_64-pc-linux-gnu Debug",
+            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "inherits": [
+                "gcc-archlinux_x64"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BOYLE_CHECK_PARAMS": "ON"
+            }
+        },
+        {
+            "name": "clang-archlinux_x64-debug",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu Debug",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "inherits": [
+                "clang-archlinux_x64"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BOYLE_CHECK_PARAMS": "ON"
+            }
+        },
+        {
+            "name": "gcc-ubuntu_x64-debug",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu Debug",
+            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "inherits": [
+                "gcc-ubuntu_x64"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BOYLE_CHECK_PARAMS": "ON"
+            }
+        },
+        {
+            "name": "clang-ubuntu_x64-debug",
+            "displayName": "Clang Ubuntu x86_64-pc-linux-gnu Debug",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "inherits": [
+                "clang-ubuntu_x64"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BOYLE_CHECK_PARAMS": "ON"
+            }
+        },
+        {
+            "name": "msvc-windows_x64-debug",
+            "displayName": "MSVC Windows x86_64 Debug",
+            "description": "Using compilers: C = cl.exe, CXX = cl.exe",
+            "inherits": [
+                "msvc-windows_x64"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BOYLE_CHECK_PARAMS": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-archlinux_x64-debug",
+            "displayName": "GCC Arch Linux x86_64-pc-linux-gnu Debug",
+            "configurePreset": "gcc-archlinux_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "gcc-archlinux_x64"
+            ]
+        },
+        {
+            "name": "clang-archlinux_x64-debug",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu Debug",
+            "configurePreset": "clang-archlinux_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "clang-archlinux_x64"
+            ]
+        },
+        {
+            "name": "gcc-ubuntu_x64-debug",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu Debug",
+            "configurePreset": "gcc-ubuntu_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "gcc-ubuntu_x64"
+            ]
+        },
+        {
+            "name": "clang-ubuntu_x64-debug",
+            "displayName": "Clang Ubuntu x86_64-pc-linux-gnu Debug",
+            "configurePreset": "clang-ubuntu_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "clang-ubuntu_x64"
+            ]
+        },
+        {
+            "name": "msvc-windows_x64-debug",
+            "displayName": "MSVC Windows x86_64 Debug",
+            "configurePreset": "msvc-windows_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "msvc-windows_x64"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "gcc-archlinux_x64-debug",
+            "displayName": "GCC Arch Linux x86_64-pc-linux-gnu Debug",
+            "configurePreset": "gcc-archlinux_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "gcc-archlinux_x64"
+            ]
+        },
+        {
+            "name": "clang-archlinux_x64-debug",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu Debug",
+            "configurePreset": "clang-archlinux_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "clang-archlinux_x64"
+            ]
+        },
+        {
+            "name": "gcc-ubuntu_x64-debug",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu Debug",
+            "configurePreset": "gcc-ubuntu_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "gcc-ubuntu_x64"
+            ]
+        },
+        {
+            "name": "clang-ubuntu_x64-debug",
+            "displayName": "Clang Ubuntu x86_64-pc-linux-gnu Debug",
+            "configurePreset": "clang-ubuntu_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "clang-ubuntu_x64"
+            ]
+        },
+        {
+            "name": "msvc-windows_x64-debug",
+            "displayName": "MSVC Windows x86_64 Debug",
+            "configurePreset": "msvc-windows_x64-debug",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "msvc-windows_x64"
+            ]
+        }
+    ]
+}
