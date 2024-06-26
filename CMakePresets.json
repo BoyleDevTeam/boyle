@@ -1,0 +1,14 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 29,
+        "patch": 3
+    },
+    "include": [
+        "cmake/presets/gcc-archlinux_x64.json",
+        "cmake/presets/clang-archlinux_x64.json",
+        "cmake/presets/gcc-ubuntu_x64.json",
+        "cmake/presets/clang-ubuntu_x64.json"
+    ]
+}

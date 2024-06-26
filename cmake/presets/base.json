@@ -1,0 +1,43 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 29,
+        "patch": 3
+    },
+    "configurePresets": [
+        {
+            "name": "base_configure",
+            "displayName": "Base Configure",
+            "description": "Base configuration for all presets",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "base_build",
+            "displayName": "Base Build",
+            "configurePreset": "base_configure",
+            "targets": "all",
+            "jobs": 0
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "base_test",
+            "displayName": "Base Test",
+            "configurePreset": "base_configure",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 0
+            }
+        }
+    ]
+}

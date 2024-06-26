@@ -1,0 +1,50 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 29,
+        "patch": 3
+    },
+    "include": [
+        "base.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "clang-archlinux_x64",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "inherits": [
+                "base_configure"
+            ],
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_C_FLAGS": "-march=native",
+                "CMAKE_CXX_FLAGS": "-march=native",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "clang-archlinux_x64",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu",
+            "configurePreset": "clang-archlinux_x64",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_build"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "clang-archlinux_x64",
+            "displayName": "Clang Arch Linux x86_64-pc-linux-gnu",
+            "configurePreset": "clang-archlinux_x64",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_test"
+            ]
+        }
+    ]
+}
