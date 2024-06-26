@@ -1,0 +1,50 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 29,
+        "patch": 3
+    },
+    "include": [
+        "base.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "gcc-ubuntu_x64",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu",
+            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "inherits": [
+                "base_configure"
+            ],
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_C_FLAGS": "-march=native",
+                "CMAKE_CXX_FLAGS": "-march=native",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-ubuntu_x64",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu",
+            "configurePreset": "gcc-ubuntu_x64",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_build"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "gcc-ubuntu_x64",
+            "displayName": "GCC Ubuntu x86_64-pc-linux-gnu",
+            "configurePreset": "gcc-ubuntu_x64",
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_test"
+            ]
+        }
+    ]
+}
