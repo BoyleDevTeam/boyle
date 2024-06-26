@@ -51,6 +51,18 @@ target_link_libraries(math_vec3
 )
 add_library(math::vec3 ALIAS math_vec3)
 
+add_header_only_library(math_utils utils.hpp)
+target_link_libraries(math_utils
+  INTERFACE
+    common::logging
+    math::concepts
+    math::duplet
+    math::triplet
+    math::vec2
+    math::vec3
+)
+add_library(math::utils ALIAS math_utils)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -60,4 +72,5 @@ install_libraries(
   math_vec2
   math_triplet
   math_vec3
+  math_utils
 )
