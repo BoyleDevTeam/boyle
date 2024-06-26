@@ -63,6 +63,14 @@ target_link_libraries(math_utils
 )
 add_library(math::utils ALIAS math_utils)
 
+add_header_only_library(math_cubic_interpolation cubic_interpolation.hpp)
+target_link_libraries(math_cubic_interpolation
+  INTERFACE
+    math::concepts
+    math::utils
+)
+add_library(math::cubic_interpolation ALIAS math_cubic_interpolation)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -73,4 +81,5 @@ install_libraries(
   math_triplet
   math_vec3
   math_utils
+  math_cubic_interpolation
 )
