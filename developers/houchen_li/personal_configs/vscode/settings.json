@@ -1,0 +1,78 @@
+{
+    // Basic Settings
+    "editor.rulers": [
+        100
+    ],
+    "editor.wordWrapColumn": 100,
+    "editor.wordWrap": "off",
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.autoIndent": "full",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": false
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+
+    // Extension Settings
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.intelliSenseCachePath": "/tmp/vscode-cpptools",
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.default.cStandard": "gnu17",
+    "C_Cpp.default.cppStandard": "gnu++20",
+    "C_Cpp.suggestSnippets": false,
+    "C_Cpp.doxygen.generateOnType": false,
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.configureOnOpen": true,
+    "cmake.skipConfigureIfCachePresent": true,
+    "clangd.arguments": [
+        "--log=verbose",
+        "--pretty",
+        "--all-scopes-completion",
+        "--completion-style=bundled",
+        "--header-insertion=never",
+        "--header-insertion-decorators",
+        "--function-arg-placeholders",
+        "--background-index",
+        "--clang-tidy",
+        "--fallback-style=Microsoft",
+        "-j=8",
+        "--pch-storage=memory"
+    ],
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
+    "doxdocgen.file.copyrightTag": [
+        "@copyright Copyright (c) {year} Boyle Development Team.",
+        "           All rights reserved."
+    ],
+
+    // Language Settings
+    "[cpp]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.insertMode": "replace",
+        "editor.autoClosingComments": "never",
+        "editor.semanticHighlighting.enabled": true
+    },
+    "[cmake]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "ms-vscode.cmake-tools"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    }
+}
