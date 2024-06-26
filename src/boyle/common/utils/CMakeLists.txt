@@ -18,9 +18,13 @@ target_link_libraries(common_array_view
 )
 add_library(common::array_view ALIAS common_array_view)
 
+add_header_only_library(common_fsm fsm.hpp)
+add_library(common::fsm ALIAS common_fsm)
+
 install_libraries(
   common_macros
   common_logging
   common_exec_on_exit
   common_array_view
+  common_fsm
 )
