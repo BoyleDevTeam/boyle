@@ -43,6 +43,14 @@ target_link_libraries(math_triplet
 )
 add_library(math::triplet ALIAS math_triplet)
 
+add_header_only_library(math_vec3 vec3.hpp)
+target_link_libraries(math_vec3
+  INTERFACE
+    math::concepts
+    math::triplet
+)
+add_library(math::vec3 ALIAS math_vec3)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -51,4 +59,5 @@ install_libraries(
   math_duplet
   math_vec2
   math_triplet
+  math_vec3
 )
