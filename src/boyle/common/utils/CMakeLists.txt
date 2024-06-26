@@ -8,7 +8,11 @@ target_link_libraries(common_logging
 )
 add_library(common::logging ALIAS common_logging)
 
+add_header_only_library(common_exec_on_exit exec_on_exit.hpp)
+add_library(common::exec_on_exit ALIAS common_exec_on_exit)
+
 install_libraries(
   common_macros
   common_logging
+  common_exec_on_exit
 )
