@@ -1,0 +1,61 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 30,
+        "patch": 0
+    },
+    "include": [
+        "base.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "msvc-windows_x64",
+            "displayName": "MSVC Windows x86_64",
+            "description": "Using compilers: C = cl.exe, CXX = cl.exe",
+            "inherits": [
+                "base_configure"
+            ],
+            "cacheVariables": {
+                "GIT_EXECUTABLE": "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/Git/cmd/git.exe",
+                "CMAKE_C_FLAGS": "/arch:AVX2 /EHsc /utf-8 /permissive-",
+                "CMAKE_CXX_FLAGS": "/arch:AVX2 /EHsc /utf-8 /permissive-",
+                "CMAKE_C_FLAGS_DEBUG": "/Od /Zi -D_DEBUG",
+                "CMAKE_CXX_FLAGS_DEBUG": "/Od /Zi -D_DEBUG",
+                "CMAKE_C_FLAGS_RELEASE": "/O2",
+                "CMAKE_CXX_FLAGS_RELEASE": "/O2",
+                "CMAKE_C_FLAGS_RELWITHDEBINFO": "/O2 /Zi",
+                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/O2 /Zi",
+                "CMAKE_C_FLAGS_MINSIZEREL": "/Os",
+                "CMAKE_CXX_FLAGS_MINSIZEREL": "/Os",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc-windows_x64",
+            "displayName": "MSVC Windows x86_64",
+            "configurePreset": "msvc-windows_x64",
+            "jobs": 8,
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_build"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "msvc-windows_x64",
+            "displayName": "MSVC Windows x86_64",
+            "configurePreset": "msvc-windows_x64",
+            "execution": {
+                "jobs": 8
+            },
+            "inheritConfigureEnvironment": true,
+            "inherits": [
+                "base_test"
+            ]
+        }
+    ]
+}
