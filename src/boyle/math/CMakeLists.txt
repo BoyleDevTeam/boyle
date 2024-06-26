@@ -12,8 +12,17 @@ target_link_libraries(math_eigen_serialization
 )
 add_library(math::eigen_serialization ALIAS math_eigen_serialization)
 
+add_header_only_library(math_chebyshev chebyshev.hpp)
+target_link_libraries(math_chebyshev
+  INTERFACE
+    Boost::serialization
+    common::logging
+)
+add_library(math::chebyshev ALIAS math_chebyshev)
+
 install_libraries(
   math_type_traits
   math_concepts
   math_eigen_serialization
+  math_chebyshev
 )
