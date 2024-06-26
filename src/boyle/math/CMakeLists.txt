@@ -28,10 +28,19 @@ target_link_libraries(math_duplet
 )
 add_library(math::duplet ALIAS math_duplet)
 
+add_header_only_library(math_vec2 vec2.hpp)
+target_link_libraries(math_vec2
+  INTERFACE
+    math::concepts
+    math::duplet
+)
+add_library(math::vec2 ALIAS math_vec2)
+
 install_libraries(
   math_type_traits
   math_concepts
   math_array
   math_chebyshev
   math_duplet
+  math_vec2
 )
