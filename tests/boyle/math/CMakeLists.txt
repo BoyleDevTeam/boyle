@@ -1,0 +1,1 @@
+add_boyle_test(math_chebyshev chebyshev_test.cpp)
