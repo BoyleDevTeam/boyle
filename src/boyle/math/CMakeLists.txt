@@ -71,6 +71,14 @@ target_link_libraries(math_cubic_interpolation
 )
 add_library(math::cubic_interpolation ALIAS math_cubic_interpolation)
 
+add_header_only_library(math_quintic_interpolation quintic_interpolation.hpp)
+target_link_libraries(math_quintic_interpolation
+  INTERFACE
+    math::concepts
+    math::cubic_interpolation
+)
+add_library(math::quintic_interpolation ALIAS math_quintic_interpolation)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -82,4 +90,5 @@ install_libraries(
   math_vec3
   math_utils
   math_cubic_interpolation
+  math_quintic_interpolation
 )
