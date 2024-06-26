@@ -35,6 +35,13 @@ target_link_libraries(math_vec2
 )
 add_library(math::vec2 ALIAS math_vec2)
 
+add_header_only_library(math_triplet triplet.hpp)
+target_link_libraries(math_triplet
+  INTERFACE
+    Boost::serialization
+)
+add_library(math::triplet ALIAS math_triplet)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -42,4 +49,5 @@ install_libraries(
   math_chebyshev
   math_duplet
   math_vec2
+  math_triplet
 )
