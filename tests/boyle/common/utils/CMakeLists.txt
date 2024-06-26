@@ -1,0 +1,1 @@
+add_boyle_test(common_array_view array_view_test.cpp)
