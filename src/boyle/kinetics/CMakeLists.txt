@@ -56,3 +56,5 @@ install_libraries(
   kinetics_fence1
   kinetics_border2
 )
+
+add_subdirectory(models)
