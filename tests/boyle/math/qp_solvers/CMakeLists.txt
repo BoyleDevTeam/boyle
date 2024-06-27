@@ -1,1 +1,3 @@
 add_doctest_test(math_qp_problem qp_problem_test.cpp)
+
+add_doctest_test(math_osqp_solver osqp_solver_test.cpp)
