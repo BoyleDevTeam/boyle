@@ -1,1 +1,3 @@
 add_boyle_test(math_piecewise_linear_curve2 piecewise_linear_curve2_test.cpp)
+
+add_boyle_test(math_piecewise_cubic_curve2 piecewise_cubic_curve2_test.cpp)
