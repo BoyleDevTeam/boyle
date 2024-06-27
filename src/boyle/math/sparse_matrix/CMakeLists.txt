@@ -33,9 +33,21 @@ target_link_libraries(math_coo_matrix
 )
 add_library(math::coo_matrix ALIAS math_coo_matrix)
 
+add_header_only_library(math_csc_matrix csc_matrix.hpp)
+target_link_libraries(math_csc_matrix
+  INTERFACE
+    Boost::serialization
+    common::logging
+    math::concepts
+    math::index_pair
+    math::dok_matrix
+)
+add_library(math::csc_matrix ALIAS math_csc_matrix)
+
 install_libraries(
   math_index_pair
   math_dok_matrix
   math_lil_matrix
   math_coo_matrix
+  math_csc_matrix
 )
