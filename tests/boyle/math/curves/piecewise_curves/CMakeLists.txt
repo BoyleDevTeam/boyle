@@ -1,0 +1,1 @@
+add_doctest_test(math_piecewise_linear_curve2 piecewise_linear_curve2_test.cpp)
