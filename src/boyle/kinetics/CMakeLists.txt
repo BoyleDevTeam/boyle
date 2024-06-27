@@ -38,10 +38,21 @@ target_link_libraries(kinetics_fence1
 )
 add_library(kinetics::fence1 ALIAS kinetics_fence1)
 
+add_header_only_library(kinetics_border2 border2.hpp)
+target_link_libraries(kinetics_border2
+  INTERFACE
+    Boost::serialization
+    kinetics::dualism
+    math::piecewise_linear_curve2
+    math::vec2
+)
+add_library(kinetics::border2 ALIAS kinetics_border2)
+
 install_libraries(
   kinetics_dualism
   kinetics_motion1
   kinetics_route_line2
   kinetics_path2
   kinetics_fence1
+  kinetics_border2
 )
