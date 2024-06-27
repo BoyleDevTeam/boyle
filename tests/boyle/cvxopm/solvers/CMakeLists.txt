@@ -1,0 +1,1 @@
+add_boyle_test(cvxopm_osqp_solver osqp_solver_test.cpp)
