@@ -1,1 +1,3 @@
 add_boyle_test(math_piecewise_linear_function1 piecewise_linear_function1_test.cpp)
+
+add_boyle_test(math_piecewise_cubic_function1 piecewise_cubic_function1_test.cpp)
