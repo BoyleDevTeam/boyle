@@ -6,3 +6,12 @@ target_link_libraries(math_dok_matrix_test
     math::csc_matrix
     math::csr_matrix
 )
+
+add_boyle_test(math_lil_matrix lil_matrix_test.cpp)
+target_link_libraries(math_lil_matrix_test
+  PRIVATE
+    math::dok_matrix
+    math::coo_matrix
+    math::csc_matrix
+    math::csr_matrix
+)
