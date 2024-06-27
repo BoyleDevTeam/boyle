@@ -1,0 +1,5 @@
+CompileFlags:
+  Compiler: g++
+  Remove: [-fmodules-ts, -fmodule-mapper=*, -fdeps-format=p1689r5]
+Index:
+  StandardLibrary: Yes
