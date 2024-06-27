@@ -91,3 +91,5 @@ install_libraries(
   math_cubic_interpolation
   math_quintic_interpolation
 )
+
+add_subdirectory(sparse_matrix)
