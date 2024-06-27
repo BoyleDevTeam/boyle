@@ -1,0 +1,1 @@
+add_doctest_test(kinetics_route_line_cubic_acc_model route_line_cubic_acc_model_test.cpp)
