@@ -44,10 +44,22 @@ target_link_libraries(math_csc_matrix
 )
 add_library(math::csc_matrix ALIAS math_csc_matrix)
 
+add_header_only_library(math_csr_matrix csr_matrix.hpp)
+target_link_libraries(math_csr_matrix
+  INTERFACE
+    Boost::serialization
+    common::logging
+    math::concepts
+    math::index_pair
+    math::dok_matrix
+)
+add_library(math::csr_matrix ALIAS math_csr_matrix)
+
 install_libraries(
   math_index_pair
   math_dok_matrix
   math_lil_matrix
   math_coo_matrix
   math_csc_matrix
+  math_csr_matrix
 )
