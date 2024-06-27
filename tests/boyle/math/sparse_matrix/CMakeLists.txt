@@ -15,3 +15,12 @@ target_link_libraries(math_lil_matrix_test
     math::csc_matrix
     math::csr_matrix
 )
+
+add_boyle_test(math_coo_matrix coo_matrix_test.cpp)
+target_link_libraries(math_coo_matrix_test
+  PRIVATE
+    math::dok_matrix
+    math::lil_matrix
+    math::csc_matrix
+    math::csr_matrix
+)
