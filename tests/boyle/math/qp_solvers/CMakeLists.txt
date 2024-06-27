@@ -1,0 +1,1 @@
+add_doctest_test(math_qp_problem qp_problem_test.cpp)
