@@ -55,6 +55,14 @@ target_link_libraries(math_csr_matrix
 )
 add_library(math::csr_matrix ALIAS math_csr_matrix)
 
+add_header_only_library(math_sparse_matrix_proxy sparse_matrix_proxy.hpp)
+target_link_libraries(math_sparse_matrix_proxy
+  INTERFACE
+    msft_proxy
+    math::concepts
+)
+add_library(math::sparse_matrix_proxy ALIAS math_sparse_matrix_proxy)
+
 install_libraries(
   math_index_pair
   math_dok_matrix
@@ -62,4 +70,5 @@ install_libraries(
   math_coo_matrix
   math_csc_matrix
   math_csr_matrix
+  math_sparse_matrix_proxy
 )

@@ -42,3 +42,13 @@ target_link_libraries(math_csr_matrix_test
     math::coo_matrix
     math::csc_matrix
 )
+
+add_boyle_test(math_sparse_matrix_proxy sparse_matrix_proxy_test.cpp)
+target_link_libraries(math_sparse_matrix_proxy_test
+  PRIVATE
+    math::dok_matrix
+    math::lil_matrix
+    math::coo_matrix
+    math::csc_matrix
+    math::csr_matrix
+)
