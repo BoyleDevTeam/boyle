@@ -1,0 +1,1 @@
+add_doctest_test(math_piecewise_linear_function1 piecewise_linear_function1_test.cpp)

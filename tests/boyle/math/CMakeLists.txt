@@ -8,5 +8,6 @@ add_doctest_test(math_cubic_interpolation cubic_interpolation_test.cpp)
 
 add_doctest_test(math_quintic_interpolation quintic_interpolation_test.cpp)
 
+add_subdirectory(functions)
 add_subdirectory(qp_solvers)
 add_subdirectory(sparse_matrix)

@@ -92,5 +92,6 @@ install_libraries(
   math_quintic_interpolation
 )
 
+add_subdirectory(functions)
 add_subdirectory(qp_solvers)
 add_subdirectory(sparse_matrix)
