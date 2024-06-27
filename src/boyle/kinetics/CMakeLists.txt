@@ -9,7 +9,18 @@ target_link_libraries(kinetics_motion1
 )
 add_library(kinetics::motion1 ALIAS kinetics_motion1)
 
+add_header_only_library(kinetics_route_line2 route_line2.hpp)
+target_link_libraries(kinetics_route_line2
+  INTERFACE
+    Boost::serialization
+    math::piecewise_quintic_curve2
+    math::utils
+    math::vec2
+)
+add_library(kinetics::route_line2 ALIAS kinetics_route_line2)
+
 install_libraries(
   kinetics_dualism
   kinetics_motion1
+  kinetics_route_line2
 )
