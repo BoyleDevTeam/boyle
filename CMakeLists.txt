@@ -27,6 +27,7 @@ enable_testing()
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 add_subdirectory(src)
+add_subdirectory(tests)
 
 file(CREATE_LINK
   "${CMAKE_BINARY_DIR}/compile_commands.json"
