@@ -4,7 +4,6 @@ target_link_libraries(math_eigen_serialization
     Boost::serialization
     Eigen3::Eigen
 )
-add_library(math::eigen_serialization ALIAS math_eigen_serialization)
 
 install_libraries(
   math_eigen_serialization

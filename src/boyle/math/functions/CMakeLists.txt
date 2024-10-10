@@ -4,7 +4,6 @@ target_link_libraries(math_function1_proxy
     msft_proxy
     math_concepts
 )
-add_library(math::function1_proxy ALIAS math_function1_proxy)
 
 install_libraries(
   math_function1_proxy

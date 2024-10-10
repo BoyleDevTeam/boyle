@@ -15,6 +15,7 @@ function(install_libraries)
   install(
     TARGETS
       ${ARGV}
+    EXPORT ${CMAKE_PROJECT_NAME}Targets
     FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${current_subdirectory}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   )

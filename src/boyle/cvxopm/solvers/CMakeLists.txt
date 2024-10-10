@@ -3,11 +3,10 @@ target_link_libraries(cvxopm_osqp_solver
   INTERFACE
     Boost::serialization
     osqpstatic
-    common::exec_on_exit
-    math::csc_matrix
-    cvxopm::qp_problem
+    common_exec_on_exit
+    math_csc_matrix
+    cvxopm_qp_problem
 )
-add_library(cvxopm::osqp_solver ALIAS cvxopm_osqp_solver)
 
 install_libraries(
   cvxopm_osqp_solver
