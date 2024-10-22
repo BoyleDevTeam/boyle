@@ -79,6 +79,12 @@ target_link_libraries(math_quintic_interpolation
 )
 add_library(math::quintic_interpolation ALIAS math_quintic_interpolation)
 
+add_header_only_library(math_fft fft.hpp)
+target_link_libraries(math_fft
+  INTERFACE
+    pocketfft
+)
+
 install_libraries(
   math_type_traits
   math_concepts
@@ -91,6 +97,7 @@ install_libraries(
   math_utils
   math_cubic_interpolation
   math_quintic_interpolation
+  math_fft
 )
 
 add_subdirectory(curves)
