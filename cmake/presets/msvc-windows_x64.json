@@ -28,7 +28,9 @@
                 "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/O2 /Zi",
                 "CMAKE_C_FLAGS_MINSIZEREL": "/Os",
                 "CMAKE_CXX_FLAGS_MINSIZEREL": "/Os",
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
             }
         }
     ],

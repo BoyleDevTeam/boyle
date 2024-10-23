@@ -19,17 +19,19 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "/usr/bin/gcc",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++",
-                "CMAKE_C_FLAGS": "-march=native -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=2 -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -Wall -Wextra -Wpedantic",
-                "CMAKE_CXX_FLAGS": "-march=native -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=2 -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -Wall -Wextra -Wpedantic",
-                "CMAKE_C_FLAGS_DEBUG": "-Og -g",
-                "CMAKE_CXX_FLAGS_DEBUG": "-Og -g",
-                "CMAKE_C_FLAGS_RELEASE": "-O2 -DNDEBUG",
-                "CMAKE_CXX_FLAGS_RELEASE": "-O2 -DNDEBUG",
-                "CMAKE_C_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
-                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
-                "CMAKE_C_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
-                "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_C_FLAGS": "-march=native -pipe -fno-plt -fexceptions -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -Wall -Wextra -Wpedantic",
+                "CMAKE_CXX_FLAGS": "-march=native -pipe -fno-plt -fexceptions -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -Wall -Wextra -Wpedantic -Wp,-D_GLIBCXX_ASSERTIONS",
+                "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
+                "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
+                "CMAKE_C_FLAGS_RELEASE": "-O2 -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O2 -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_C_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_C_FLAGS_MINSIZEREL": "-Os -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG -Wp,-D_FORTIFY_SOURCE=3",
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_UNITY_BUILD": true,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
             }
         }
     ],

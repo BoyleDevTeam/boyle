@@ -1,83 +1,71 @@
 add_header_only_library(math_type_traits type_traits.hpp)
-add_library(math::type_traits ALIAS math_type_traits)
 
 add_header_only_library(math_concepts concepts.hpp)
-add_library(math::concepts ALIAS math_concepts)
 
 add_header_only_library(math_array array.hpp)
 target_link_libraries(math_array
   INTERFACE
     Boost::serialization
-    OpenBLAS
     LPACKE
 )
-add_library(math::array ALIAS math_array)
 
 add_header_only_library(math_chebyshev chebyshev.hpp)
 target_link_libraries(math_chebyshev
   INTERFACE
     Boost::serialization
-    common::logging
+    common_logging
 )
-add_library(math::chebyshev ALIAS math_chebyshev)
 
 add_header_only_library(math_duplet duplet.hpp)
 target_link_libraries(math_duplet
   INTERFACE
     Boost::serialization
 )
-add_library(math::duplet ALIAS math_duplet)
 
 add_header_only_library(math_vec2 vec2.hpp)
 target_link_libraries(math_vec2
   INTERFACE
-    math::concepts
-    math::duplet
+    math_concepts
+    math_duplet
 )
-add_library(math::vec2 ALIAS math_vec2)
 
 add_header_only_library(math_triplet triplet.hpp)
 target_link_libraries(math_triplet
   INTERFACE
     Boost::serialization
 )
-add_library(math::triplet ALIAS math_triplet)
 
 add_header_only_library(math_vec3 vec3.hpp)
 target_link_libraries(math_vec3
   INTERFACE
-    math::concepts
-    math::triplet
+    math_concepts
+    math_triplet
 )
-add_library(math::vec3 ALIAS math_vec3)
 
 add_header_only_library(math_utils utils.hpp)
 target_link_libraries(math_utils
   INTERFACE
-    common::logging
-    math::concepts
-    math::duplet
-    math::triplet
-    math::vec2
-    math::vec3
+    common_logging
+    math_concepts
+    math_duplet
+    math_triplet
+    math_vec2
+    math_vec3
 )
-add_library(math::utils ALIAS math_utils)
 
 add_header_only_library(math_cubic_interpolation cubic_interpolation.hpp)
 target_link_libraries(math_cubic_interpolation
   INTERFACE
-    math::concepts
-    math::utils
+    math_concepts
+    math_utils
 )
-add_library(math::cubic_interpolation ALIAS math_cubic_interpolation)
 
 add_header_only_library(math_quintic_interpolation quintic_interpolation.hpp)
 target_link_libraries(math_quintic_interpolation
   INTERFACE
-    math::concepts
-    math::cubic_interpolation
+    math_concepts
+    math_cubic_interpolation
 )
-add_library(math::quintic_interpolation ALIAS math_quintic_interpolation)
 
 add_header_only_library(math_fft fft.hpp)
 target_link_libraries(math_fft

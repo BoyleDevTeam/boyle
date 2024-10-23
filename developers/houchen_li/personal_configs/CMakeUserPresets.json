@@ -15,7 +15,9 @@
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BOYLE_CHECK_PARAMS": "ON"
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": false,
+                "BOYLE_CHECK_PARAMS": true
             }
         },
         {
@@ -27,7 +29,9 @@
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BOYLE_CHECK_PARAMS": "ON"
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": false,
+                "BOYLE_CHECK_PARAMS": true
             }
         },
         {
@@ -39,7 +43,9 @@
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BOYLE_CHECK_PARAMS": "ON"
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": false,
+                "BOYLE_CHECK_PARAMS": true
             }
         },
         {
@@ -51,7 +57,9 @@
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BOYLE_CHECK_PARAMS": "ON"
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": false,
+                "BOYLE_CHECK_PARAMS": true
             }
         },
         {
@@ -63,7 +71,9 @@
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BOYLE_CHECK_PARAMS": "ON"
+                "CMAKE_UNITY_BUILD": false,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": false,
+                "BOYLE_CHECK_PARAMS": true
             }
         }
     ],
