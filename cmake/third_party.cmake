@@ -173,5 +173,5 @@ CPMAddPackage(
   GIT_TAG "v1.2.1"
   OPTIONS
     "CMAKE_CXX_STANDARD 17"
-    "CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -Wno-uninitialized -Wno-ignored-attributes"
+    "CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -Wno-ignored-attributes"
 )

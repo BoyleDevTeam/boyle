@@ -17,7 +17,7 @@
 #include <stdexcept>
 
 #include "boost/serialization/access.hpp"
-#include "boost/serialization/array.hpp"
+#include "boost/serialization/array_wrapper.hpp"
 #include "boost/serialization/vector.hpp"
 #include "osqp.h"
 

@@ -18,7 +18,6 @@
 
 #include "proxy.h"
 
-#include "boyle/math/concepts.hpp"
 #include "boyle/math/utils.hpp"
 #include "boyle/math/vec2.hpp"
 

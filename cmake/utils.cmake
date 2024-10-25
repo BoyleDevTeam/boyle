@@ -1,6 +1,5 @@
 function(add_header_only_library name header_name)
   add_library(${name} INTERFACE)
-  target_compile_definitions(${name} INTERFACE LIBRARY_HEADER_ONLY)
   target_sources(${name}
     INTERFACE
       FILE_SET HEADERS
