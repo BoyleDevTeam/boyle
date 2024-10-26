@@ -1,0 +1,79 @@
+boyle_cxx_test(
+  NAME
+    math_curve2_proxy_test
+  SRCS
+    "curve2_proxy_test.cpp"
+  DEPS
+    math_vec2
+    math_curve2_proxy
+    math_piecewise_linear_curve
+    math_piecewise_cubic_curve
+    math_piecewise_quintic_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_curve3_proxy_test
+  SRCS
+    "curve3_proxy_test.cpp"
+  DEPS
+    math_vec3
+    math_curve3_proxy
+    math_piecewise_linear_curve
+    math_piecewise_cubic_curve
+    math_piecewise_quintic_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_linear_curve2_test
+  SRCS
+    "piecewise_linear_curve2_test.cpp"
+  DEPS
+    math_piecewise_linear_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_cubic_curve2_test
+  SRCS
+    "piecewise_cubic_curve2_test.cpp"
+  DEPS
+    math_piecewise_cubic_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_quintic_curve2_test
+  SRCS
+    "piecewise_quintic_curve2_test.cpp"
+  DEPS
+    math_piecewise_quintic_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_linear_curve3_test
+  SRCS
+    "piecewise_linear_curve3_test.cpp"
+  DEPS
+    math_piecewise_linear_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_cubic_curve3_test
+  SRCS
+    "piecewise_cubic_curve3_test.cpp"
+  DEPS
+    math_piecewise_cubic_curve
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_quintic_curve3_test
+  SRCS
+    "piecewise_quintic_curve3_test.cpp"
+  DEPS
+    math_piecewise_quintic_curve
+)
