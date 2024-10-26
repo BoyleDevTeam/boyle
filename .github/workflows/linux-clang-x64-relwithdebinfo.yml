@@ -1,0 +1,94 @@
+name: linux-clang-x64 RelWithDebInfo
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  actions: write
+
+jobs:
+  linux-clang-x64-relwithdebinfo:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+      shell: bash
+      # ${{ steps.get-date.outputs.date }}
+
+    - name: Install latest CMake and Ninja
+      id: install-cmake
+      uses: lukka/get-cmake@latest
+
+    - name: Install prerequisites
+      id: install-prerequisites
+      run: |
+        sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" 20 all
+        sudo apt-get install -y flang-20 libflang-20-dev
+        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-20 20
+        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 20
+        sudo update-alternatives --install /usr/bin/flang flang /usr/bin/flang-20 20
+        sudo update-alternatives --install /usr/bin/lld lld /usr/bin/lld-20 20
+        sudo update-alternatives --install /usr/bin/ld.lld ld.lld /usr/bin/ld.lld-20 20
+        sudo update-alternatives --set clang /usr/bin/clang-20
+        sudo update-alternatives --set clang++ /usr/bin/clang++-20
+        sudo update-alternatives --set flang /usr/bin/flang-20
+        sudo update-alternatives --set lld /usr/bin/lld-20
+        sudo update-alternatives --set ld.lld /usr/bin/ld.lld-20
+      shell: bash
+
+    - name: Setup ccache
+      id: setup-ccache
+      uses: Chocobo1/setup-ccache-action@v1
+      with:
+        remove_stale_cache: true
+        override_cache_key: ${{ github.job }}-ccache
+        override_cache_key_fallback: |
+          ${{ github.job }}-ccache
+
+    - name: Cache Third Party
+      id: cache-third_party
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ github.workspace }}/third_party
+        key: third_party
+        restore-keys: |
+          third_party
+
+    - name: Cache out
+      id: cache-out
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ github.workspace }}/out
+        key: ${{ github.job }}-out
+        restore-keys: |
+          ${{ github.job }}-out
+
+    - name: Run CMake consuming CMakePresets.json for linux-clang-x64 RelWithDebInfo
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-clang-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=RelWithDebInfo']"
+        buildPreset: linux-clang-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-clang-x64
+        testPresetAdditionalArgs: "[]"
+
+    - name: Run CMake consuming CMakePresets.json for linux-clang-x64 RelWithDebInfo without OpenBLAS
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-clang-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Debug', '-DBOYLE_USE_BLAS_LAPACK=OFF', '-DBOYLE_USE_BOOST_UNORDERED=OFF']"
+        buildPreset: linux-clang-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-clang-x64
+        testPresetAdditionalArgs: "[]"

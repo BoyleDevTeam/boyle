@@ -1,0 +1,17 @@
+boyle_cxx_library(
+  NAME
+    cvxopm_osqp_solver
+  HDRS
+    "osqp_solver.hpp"
+  SRCS
+    "osqp_solver.cpp"
+  DEPS
+    Boost::serialization
+    osqpstatic
+    common_exec_on_exit
+    math_csc_matrix
+    cvxopm_qp_problem
+    cvxopm_settings
+    cvxopm_result
+    cvxopm_info
+)
