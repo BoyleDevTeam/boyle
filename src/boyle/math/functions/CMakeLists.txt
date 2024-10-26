@@ -1,0 +1,59 @@
+boyle_cxx_library(
+  NAME
+    math_function_proxy
+  HDRS
+    "function_proxy.hpp"
+    "boyle/math/dense/detail/dense_generate_trait.hpp"
+  DEPS
+    msft_proxy
+    math_concepts
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_linear_function
+  HDRS
+    "piecewise_linear_function.hpp"
+    "boyle/math/dense/detail/dense_generate_trait.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_concepts
+    math_utils
+    math_vec2
+    math_vec3
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_cubic_function
+  HDRS
+    "piecewise_cubic_function.hpp"
+    "boyle/math/dense/detail/dense_generate_trait.hpp"
+    "boundary_mode.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_concepts
+    math_cubic_interpolation
+    math_utils
+    math_vec2
+    math_vec3
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_quintic_function
+  HDRS
+    "piecewise_quintic_function.hpp"
+    "boyle/math/dense/detail/dense_generate_trait.hpp"
+    "boundary_mode.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_concepts
+    math_quintic_interpolation
+    math_utils
+    math_vec2
+    math_vec3
+)
