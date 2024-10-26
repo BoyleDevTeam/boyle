@@ -1,0 +1,46 @@
+add_library(openblas INTERFACE IMPORTED)
+add_library(openblas_static INTERFACE IMPORTED)
+
+if (BOYLE_USE_BLAS_LAPACK)
+  CPMAddPackage(
+    NAME OpenBLAS
+    VERSION 0.3.29
+    URL https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.29/OpenBLAS-0.3.29.tar.gz
+    URL_HASH SHA256=38240eee1b29e2bde47ebb5d61160207dc68668a54cac62c076bb5032013b1eb
+    DOWNLOAD_ONLY True
+  )
+
+  ExternalProject_Add(
+    OpenBLAS
+    PREFIX ${CMAKE_BINARY_DIR}/_deps
+    TMP_DIR ${CMAKE_BINARY_DIR}/_deps/openblas-tmp
+    STAMP_DIR ${CMAKE_BINARY_DIR}/_deps/openblas-stamp
+    SOURCE_DIR ${OpenBLAS_SOURCE_DIR}
+    BINARY_DIR ${CMAKE_BINARY_DIR}/_deps/openblas-build
+    INSTALL_DIR ${CMAKE_INSTALL_PREFIX}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different <SOURCE_DIR>/. ./ && ${CMAKE_COMMAND} -E env CC=${CMAKE_C_COMPILER_LAUNCHER}\ ${CMAKE_C_COMPILER} FC=${CMAKE_Fortran_COMPILER_LAUNCHER}\ ${CMAKE_Fortran_COMPILER} ASMFLAGS=${CMAKE_C_FLAGS} COMMON_OPT=${CMAKE_C_FLAGS} ARCH=x86-64 DYNAMIC_ARCH=0 NO_WARMUP=1 NO_AFFINITY=1 USE_THREADS=0 USE_LOCKING=0 USE_OPENMP=0 BUILD_LAPACK_DEPRECATED=1 make PREFIX=<INSTALL_DIR>
+    INSTALL_COMMAND make -C <BINARY_DIR> PREFIX=<INSTALL_DIR> install
+  )
+
+  add_dependencies(openblas OpenBLAS)
+  add_dependencies(openblas_static OpenBLAS)
+
+  set_target_properties(openblas
+    PROPERTIES
+      IMPORTED_SONAME libopenblas.so
+      INTERFACE_LINK_DIRECTORIES ${CMAKE_INSTALL_PREFIX}/lib
+      INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_PREFIX}/include
+      INTERFACE_COMPILE_DEFINITIONS "BOYLE_USE_BLAS_LAPACK=1"
+      INTERFACE_COMPILE_OPTIONS "-Wno-c99-extensions"
+  )
+
+  set_target_properties(openblas_static
+    PROPERTIES
+      IMPORTED_LIBNAME libopenblas.a
+      INTERFACE_LINK_DIRECTORIES ${CMAKE_INSTALL_PREFIX}/lib
+      INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_PREFIX}/include
+      INTERFACE_COMPILE_DEFINITIONS "BOYLE_USE_BLAS_LAPACK=1"
+      INTERFACE_COMPILE_OPTIONS "-Wno-c99-extensions"
+  )
+endif()
