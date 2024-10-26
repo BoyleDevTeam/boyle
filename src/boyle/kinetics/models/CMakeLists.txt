@@ -1,0 +1,63 @@
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_cubic_acc_model
+  SRCS
+    "route_line_cubic_acc_model.cpp"
+  HDRS
+    "route_line_cubic_acc_model.hpp"
+  DEPS
+    fmt::fmt-header-only
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_motion1
+    kinetics_fence1
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_quintic_acc_model
+  SRCS
+    "route_line_quintic_acc_model.cpp"
+  HDRS
+    "route_line_quintic_acc_model.hpp"
+  DEPS
+    fmt::fmt-header-only
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_motion1
+    kinetics_fence1
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_cubic_offset_model
+  SRCS
+    "route_line_cubic_offset_model.cpp"
+  HDRS
+    "route_line_cubic_offset_model.hpp"
+  DEPS
+    fmt::fmt-header-only
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_path2
+    kinetics_border2
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_quintic_offset_model
+  SRCS
+    "route_line_quintic_offset_model.cpp"
+  HDRS
+    "route_line_quintic_offset_model.hpp"
+  DEPS
+    fmt::fmt-header-only
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_path2
+    kinetics_border2
+)
