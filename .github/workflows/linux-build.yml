@@ -1,0 +1,120 @@
+name: linux-build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  linux-build:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Install latest CMake and Ninja
+      id: install-cmake
+      uses: lukka/get-cmake@latest
+
+    - name: Install Boost
+      id: install-boost
+      uses: MarkusJx/install-boost@v2.4.5
+      with:
+        boost_version: 1.86.0
+        platform_version: 22.04
+        toolset: gcc
+        link: static+shared
+        arch: x86
+
+    - name: Install prerequisites
+      id: install-prerequisites
+      run: |
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 14
+        sudo apt-get update
+        sudo apt-get install -y libopenblas-dev libeigen3-dev libcxxopts-dev libfmt-dev libspdlog-dev doctest-dev
+      shell: bash
+
+    - name: Setup ccache
+      id: setup-ccache
+      uses: Chocobo1/setup-ccache-action@v1
+      with:
+        remove_stale_cache: true
+        override_cache_key: ${{runner.os}}-ccache
+        override_cache_key_fallback: |
+          ${{runner.os}}-ccache_
+    
+    - name: Cache Third Party
+      id: cache-third_party
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{github.workspace}}/third_party
+        key: ${{runner.os}}-third_party-${{steps.get-date.outputs.date}}
+        restore-keys: |
+          ${{runner.os}}-third_party-
+
+    - name: Cache Outputs
+      id: cache-outputs
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{github.workspace}}/out
+        key: ${{runner.os}}-outputs-${{steps.get-date.outputs.date}}
+        restore-keys: |
+          ${{runner.os}}-outputs-
+
+    - name: Run CMake consuming CMakePresets.json for linux-gcc-x64
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-gcc-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Release']"
+        buildPreset: linux-gcc-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-gcc-x64
+        testPresetAdditionalArgs: "[]"
+      env:
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+
+    - name: Run CMake consuming CMakePresets.json for linux-clang-x64
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-clang-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Release']"
+        buildPreset: linux-clang-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-clang-x64
+        testPresetAdditionalArgs: "[]"
+      env:
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+
+    - name: Run CMake consuming CMakePresets.json for linux-gcc-x64-debug
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-gcc-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Debug']"
+        buildPreset: linux-gcc-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-gcc-x64
+        testPresetAdditionalArgs: "[]"
+      env:
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+
+    - name: Run CMake consuming CMakePresets.json for linux-clang-x64-debug
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-clang-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Debug']"
+        buildPreset: linux-clang-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-clang-x64
+        testPresetAdditionalArgs: "[]"
+      env:
+        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
