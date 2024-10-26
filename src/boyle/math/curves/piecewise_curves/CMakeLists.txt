@@ -1,0 +1,43 @@
+boyle_cxx_library(
+  NAME
+    math_piecewise_linear_curve2
+  HDRS
+    "piecewise_linear_curve2.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_duplet
+    math_piecewise_linear_function1
+    math_utils
+    math_vec2
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_cubic_curve2
+  HDRS
+    "piecewise_cubic_curve2.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_duplet
+    math_cubic_interpolation
+    math_piecewise_cubic_function1
+    math_utils
+    math_vec2
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_quintic_curve2
+  HDRS
+    "piecewise_quintic_curve2.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_duplet
+    math_piecewise_quintic_function1
+    math_quintic_interpolation
+    math_utils
+    math_vec2
+)

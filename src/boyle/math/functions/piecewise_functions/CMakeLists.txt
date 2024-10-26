@@ -1,0 +1,35 @@
+boyle_cxx_library(
+  NAME
+    math_piecewise_linear_function1
+  HDRS
+    "piecewise_linear_function1.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_concepts
+    math_utils
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_cubic_function1
+  HDRS
+    "piecewise_cubic_function1.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_concepts
+    math_cubic_interpolation
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_quintic_function1
+  HDRS
+    "piecewise_quintic_function1.hpp"
+  DEPS
+    Boost::serialization
+    fmt::fmt-header-only
+    math_concepts
+    math_quintic_interpolation
+)
