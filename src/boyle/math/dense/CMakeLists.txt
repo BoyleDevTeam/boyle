@@ -1,0 +1,125 @@
+boyle_cxx_library(
+  NAME
+    math_dense_traits
+  HDRS
+    "dense_traits.hpp"
+  DEPS 
+    common_aligned_allocator
+    math_concepts
+)
+
+boyle_cxx_library(
+  NAME
+    math_vector_view
+  HDRS
+    "vector_view.hpp"
+  DEPS
+    math_concepts
+    math_dense_traits
+)
+
+boyle_cxx_library(
+  NAME
+    math_vector
+  HDRS
+    "vector.hpp"
+    "detail/dense_norm_trait.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_type_traits
+    math_concepts
+    math_dense_traits
+    math_vector_view
+)
+
+boyle_cxx_library(
+  NAME
+    math_vectorx
+  HDRS
+    "vectorx.hpp"
+    "detail/dense_norm_result.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_type_traits
+    math_concepts
+    math_dense_traits
+    math_vector_view
+)
+
+boyle_cxx_library(
+  NAME
+    math_matrix_view
+  HDRS
+    "matrix_view.hpp"
+  DEPS
+    math_concepts
+    math_dense_traits
+)
+
+boyle_cxx_library(
+  NAME
+    math_matrix
+  HDRS
+    "matrix.hpp"
+    "detail/dense_norm_trait.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_type_traits
+    math_concepts
+    math_dense_traits
+    math_matrix_view
+)
+
+boyle_cxx_library(
+  NAME
+    math_matrixx
+  HDRS
+    "matrixx.hpp"
+    "detail/dense_norm_trait.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_type_traits
+    math_concepts
+    math_dense_traits
+    math_matrix_view
+)
+
+boyle_cxx_library(
+  NAME
+    math_lu_dcmp
+  HDRS
+    "lu_dcmp.hpp"
+    "detail/dense_partial_pivot_result.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_concepts
+)
+
+boyle_cxx_library(
+  NAME
+    math_qr_dcmp
+  HDRS
+    "qr_dcmp.hpp"
+    "detail/dense_degenerate_result.hpp"
+  DEPS
+    OpenBLAS::OpenBLAS
+    math_concepts
+)
+
+boyle_cxx_library(
+  NAME
+    math_dense_utils
+  HDRS
+    "dense_utils.hpp"
+  DEPS
+    math_concepts
+    math_dense_traits
+)
+
+if (BOYLE_USE_BLAS_LAPACK)
+  set_target_properties(math_vector math_vectorx math_matrix math_matrixx math_lu_dcmp math_qr_dcmp
+    PROPERTIES
+      INTERFACE_COMPILE_DEFINITIONS "BOYLE_USE_BLAS_LAPACK"
+      INTERFACE_COMPILE_OPTIONS "-Wno-c99-extensions"
+  )
+endif()
