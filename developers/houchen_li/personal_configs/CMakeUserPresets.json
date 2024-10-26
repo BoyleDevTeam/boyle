@@ -1,0 +1,106 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 31,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux-gcc-x64-debug",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu Debug",
+      "description": "Using compilers: C = gcc, CXX = g++",
+      "inherits": ["linux-gcc-x64"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_SHARED_LIBS": true,
+        "BOYLE_CHECK_PARAMS": true
+      }
+    },
+    {
+      "name": "linux-clang-x64-debug",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu Debug",
+      "description": "Using compilers: C = clang, CXX = clang++",
+      "inherits": ["linux-clang-x64"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_SHARED_LIBS": true,
+        "BOYLE_CHECK_PARAMS": true
+      }
+    },
+    {
+      "name": "windows-msvc-x64-debug",
+      "displayName": "Windows MSVC x86_64 Debug",
+      "description": "Using compilers: C = cl.exe, CXX = cl.exe",
+      "inherits": ["windows-msvc-x64"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BOYLE_CHECK_PARAMS": true
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux-gcc-x64-debug",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu Debug",
+      "configurePreset": "linux-gcc-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "linux-clang-x64-debug",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu Debug",
+      "configurePreset": "linux-clang-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "windows-msvc-x64-debug",
+      "displayName": "Windows MSVC x86_64 Debug",
+      "configurePreset": "windows-msvc-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "linux-gcc-x64-debug",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu Debug",
+      "configurePreset": "linux-gcc-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 0
+      }
+    },
+    {
+      "name": "linux-clang-x64-debug",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu Debug",
+      "configurePreset": "linux-clang-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 0
+      }
+    },
+    {
+      "name": "windows-msvc-x64-debug",
+      "displayName": "Windows MSVC x86_64 Debug",
+      "configurePreset": "windows-msvc-x64-debug",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 0
+      }
+    }
+  ]
+}

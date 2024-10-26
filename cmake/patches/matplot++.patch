@@ -1,0 +1,23 @@
+--- a/source/matplot/util/popen.cpp
++++ b/source/matplot/util/popen.cpp
+@@ -2,6 +2,7 @@
+ #include <matplot/util/popen.h>
+ #include <array>
+ #include <system_error>
++#include <cstdlib>
+ #include <cstring> // strerror
+ 
+ #ifdef _WIN32
+--- a/source/matplot/util/common.cpp
++++ b/source/matplot/util/common.cpp
+@@ -866,8 +866,8 @@ namespace matplot {
+ 
+         // Initial calculations
+         if (log) {
+-            std::invalid_argument("Not implemented yet. The library does not "
+-                                  "need that as it is.");
++            throw std::invalid_argument("Not implemented yet. The library does not "
++                                        "need that as it is.");
+         }
+ 
+         // Data range

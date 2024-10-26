@@ -1,0 +1,65 @@
+name: windows-x64
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+permissions:
+  actions: write
+
+jobs:
+  windows-x64:
+    strategy:
+      fail-fast: false
+      matrix:
+        cmake_preset: [windows-msvc-x64]
+        build_type: [Debug, Release, RelWithDebInfo, MinSizeRel]
+        build_shared: [OFF]
+        use_blas_lapack: [OFF]
+        use_boost_unordered: [ON, OFF]
+
+    runs-on: windows-2025
+    name: ${{ matrix.cmake_preset }}.${{ matrix.build_type }}.build-shared-${{ matrix.build_shared }}.boost-unordered-${{ matrix.use_boost_unordered }}.blas-lapack-${{ matrix.use_blas_lapack }}
+
+    steps:
+      - name: Checkout repository
+        id: checkout-repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install MSVC prerequisites on Windows
+        id: install-prerequisites-windows-msvc
+        uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: x64
+
+      - name: Setup vcpkg
+        id: setup-vcpkg
+        uses: lukka/run-vcpkg@v11
+
+      - name: Install latest CMake and Ninja
+        id: install-cmake
+        uses: lukka/get-cmake@latest
+
+      - name: Setup ccache
+        id: setup-ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          store_cache: false
+          restore_cache: false
+          remove_stale_cache: true
+          override_cache_key: ccache_${{ matrix.cmake_preset }}_${{ matrix.build_type }}_build-shared-${{ matrix.build_shared }}_boost-unordered-${{ matrix.use_boost_unordered }}_blas-lapack-${{ matrix.use_blas_lapack }}
+
+      - name: Run CMake consuming CMakePresets.json for ${{ matrix.cmake_preset }} ${{ matrix.build_type }}
+        id: run-cmake
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ${{ matrix.cmake_preset }}
+          configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=${{ matrix.build_type }}', '-DBUILD_SHARED_LIBS=${{ matrix.build_shared }}', '-DBOYLE_USE_BOOST_UNORDERED=${{ matrix.use_boost_unordered }}', '-DBOYLE_USE_BLAS_LAPACK=${{ matrix.use_blas_lapack }}']"
+          buildPreset: ${{ matrix.cmake_preset }}
+          buildPresetAdditionalArgs: "[]"
+          testPreset: ${{ matrix.cmake_preset }}
+          testPresetAdditionalArgs: "[]"
