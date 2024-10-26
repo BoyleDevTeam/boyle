@@ -1,0 +1,88 @@
+name: linux-gcc-x64 MinSizeRel
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  actions: write
+
+jobs:
+  linux-gcc-x64-minsizerel:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+      shell: bash
+      # ${{ steps.get-date.outputs.date }}
+
+    - name: Install latest CMake and Ninja
+      id: install-cmake
+      uses: lukka/get-cmake@latest
+
+    - name: Install prerequisites
+      id: install-prerequisites
+      run: |
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 14
+        sudo update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-14 14
+        sudo update-alternatives --set gcc /usr/bin/gcc-14
+        sudo update-alternatives --set g++ /usr/bin/g++-14
+        sudo update-alternatives --set gfortran /usr/bin/gfortran-14
+      shell: bash
+
+    - name: Setup ccache
+      id: setup-ccache
+      uses: Chocobo1/setup-ccache-action@v1
+      with:
+        remove_stale_cache: true
+        override_cache_key: ${{ github.job }}-ccache
+        override_cache_key_fallback: |
+          ${{ github.job }}-ccache
+
+    - name: Cache Third Party
+      id: cache-third_party
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ github.workspace }}/third_party
+        key: third_party
+        restore-keys: |
+          third_party
+
+    - name: Cache out
+      id: cache-out
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ github.workspace }}/out
+        key: ${{ github.job }}-out
+        restore-keys: |
+          ${{ github.job }}-out
+
+    - name: Run CMake consuming CMakePresets.json for linux-gcc-x64 MinSizeRel
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-gcc-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=MinSizeRel']"
+        buildPreset: linux-gcc-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-gcc-x64
+        testPresetAdditionalArgs: "[]"
+
+    - name: Run CMake consuming CMakePresets.json for linux-gcc-x64 MinSizeRel without OpenBLAS
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: linux-gcc-x64
+        configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=Debug', '-DBOYLE_USE_BLAS_LAPACK=OFF', '-DBOYLE_USE_BOOST_UNORDERED=OFF']"
+        buildPreset: linux-gcc-x64
+        buildPresetAdditionalArgs: "[]"
+        testPreset: linux-gcc-x64
+        testPresetAdditionalArgs: "[]"
