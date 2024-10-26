@@ -1,0 +1,33 @@
+boyle_cxx_library(
+  NAME
+    cvxopm_osqp_solver
+  HDRS
+    "osqp_solver.hpp"
+  SRCS
+    "osqp_solver.cpp"
+  DEPS
+    Boost::serialization
+    osqpstatic
+    math_vector_view
+    math_csc_matrix
+    cvxopm_qp_problem
+    cvxopm_settings
+    cvxopm_result
+    cvxopm_info
+)
+
+boyle_cxx_library(
+  NAME
+    cvxopm_lnsrch_solver
+  HDRS
+    "lnsrch_solver.hpp"
+    "detail/lnsrch.hpp"
+  DEPS
+    common_aligned_memory_resource
+    math_vectorx
+    math_mdfunction_proxy
+    cvxopm_dense_problem
+    cvxopm_settings
+    cvxopm_result
+    cvxopm_info
+)
