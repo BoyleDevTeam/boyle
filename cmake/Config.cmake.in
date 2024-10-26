@@ -1,0 +1,25 @@
+include(CMakeFindDependencyMacro)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  find_dependency(LLVM REQUIRED CONFIG)
+endif()
+
+find_dependency(Threads REQUIRED MODULE)
+
+find_dependency(Boost 1.79.0 REQUIRED CONFIG
+  COMPONENTS
+    serialization
+)
+
+find_dependency(OpenBLAS REQUIRED CONFIG)
+
+find_dependency(Eigen3 3.4.0 REQUIRED CONFIG)
+
+set_target_properties(Eigen3::Eigen
+  PROPERTIES
+    INTERFACE_COMPILE_DEFINITIONS "EIGEN_USE_BLAS;EIGEN_USE_LAPACK"
+)
+
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
