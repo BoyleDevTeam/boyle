@@ -1,0 +1,29 @@
+include(CMakeFindDependencyMacro)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  find_dependency(LLVM REQUIRED CONFIG)
+endif()
+
+find_dependency(Threads REQUIRED MODULE)
+
+find_package(OpenMP REQUIRED MODULE)
+
+find_dependency(Boost 1.87.0 REQUIRED CONFIG
+  COMPONENTS
+    serialization
+)
+
+if (BOYLE_USE_BLAS_LAPACK)
+  find_dependency(OpenBLAS REQUIRED CONFIG)
+  set_target_properties(OpenBLAS::OpenBLAS
+    PROPERTIES
+      INTERFACE_COMPILE_DEFINITIONS "BOYLE_USE_BLAS_LAPACK"
+      INTERFACE_COMPILE_OPTIONS "-Wno-c99-extensions"
+  )
+else()
+  add_library(OpenBLAS::OpenBLAS INTERFACE IMPORTED)
+endif()
+
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
