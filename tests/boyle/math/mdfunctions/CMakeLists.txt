@@ -1,0 +1,48 @@
+boyle_cxx_test(
+  NAME
+    math_mdfunction_proxy_test
+  SRCS
+    "mdfunction_proxy_test.cpp"
+  DEPS
+    math_mdfunction_proxy
+    math_vector
+    math_vectorx
+    math_matrix
+    math_matrixx
+    math_linear_mdfunction
+    math_quadratic_mdfunction
+)
+
+boyle_cxx_test(
+  NAME
+    math_linear_mdfunction_test
+  SRCS
+    "linear_mdfunction_test.cpp"
+  DEPS
+    math_vector
+    math_vectorx
+    math_linear_mdfunction
+)
+
+boyle_cxx_test(
+  NAME
+    math_quadratic_mdfunction_test
+  SRCS
+    "quadratic_mdfunction_test.cpp"
+  DEPS
+    math_vector
+    math_vectorx
+    math_matrix
+    math_matrixx
+    math_quadratic_mdfunction
+)
+
+boyle_cxx_test(
+  NAME
+    math_rosenbrock_function_test
+  SRCS
+    "rosenbrock_function_test.cpp"
+  DEPS
+    math_vec2
+    math_rosenbrock_function
+)
