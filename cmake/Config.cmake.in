@@ -1,0 +1,19 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  if(WIN32)
+    find_package(LLVM 20.1.0 REQUIRED CONFIG)
+  elseif(APPLE)
+    find_package(LLVM 22.1.0 REQUIRED CONFIG)
+  else()
+    find_package(LLVM 22.1.0 REQUIRED CONFIG)
+  endif()
+endif()
+
+find_dependency(Threads REQUIRED MODULE)
+
+find_dependency(OpenMP REQUIRED MODULE)
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")

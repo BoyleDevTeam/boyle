@@ -1,0 +1,27 @@
+include(ExternalProject)
+
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  if(WIN32)
+    find_package(LLVM 20.1.0 REQUIRED CONFIG)
+  elseif(APPLE)
+    find_package(LLVM 22.1.0 REQUIRED CONFIG)
+  else()
+    find_package(LLVM 22.1.0 REQUIRED CONFIG)
+  endif()
+endif()
+
+find_package(Threads REQUIRED MODULE GLOBAL)
+
+find_package(OpenMP REQUIRED MODULE GLOBAL)
+
+add_subdirectory(cpm)
+add_subdirectory(boost)
+add_subdirectory(cxxopts)
+add_subdirectory(doctest)
+add_subdirectory(matplotplusplus)
+add_subdirectory(msft_proxy4)
+add_subdirectory(openblas)
+add_subdirectory(osqp)
+add_subdirectory(pocketfft)
+add_subdirectory(qdldl)
+add_subdirectory(spdlog)

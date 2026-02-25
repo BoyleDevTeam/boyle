@@ -1,0 +1,42 @@
+# CMakePresets.json File
+/CMakeUserPresets.json
+
+# Build Directory
+/out
+/out/
+/build
+/build/
+
+# xmake Build Artifacts
+/.xmake/
+
+# third-party dependencies
+/third_party/
+
+# Compile Commands file
+/compile_commands.json
+
+# Vscode Configuration
+/.vscode/
+
+# Zed Configuration
+/.zed/
+
+# Helix Configuration
+/.helix/
+
+# Cache Directory
+/*cache
+/*cache/
+
+# Youcompleteme Configuration
+/.ycm_extra_conf.py
+
+# Claude Code local settings (personal overrides)
+/.claude/settings.local.json
+
+# Cursor local configuration
+/.cursor/mcp.json
+
+# Force Include Developer Files
+/!developers/**
