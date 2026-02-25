@@ -1,0 +1,120 @@
+target("math_dense_traits")
+    set_kind("headeronly")
+    add_headerfiles("dense_traits.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_deps("common_aligned_allocator", "math_concepts")
+target_end()
+
+target("math_vector_view")
+    set_kind("headeronly")
+    add_headerfiles("vector_view.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_deps("math_concepts", "math_dense_traits")
+target_end()
+
+target("math_vector")
+    set_kind("headeronly")
+    add_headerfiles("vector.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("math_concepts", "math_dense_traits", "math_vector_view")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_vectorx")
+    set_kind("headeronly")
+    add_headerfiles("vectorx.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("math_concepts", "math_dense_traits", "math_vector_view")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_matrix_view")
+    set_kind("headeronly")
+    add_headerfiles("matrix_view.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_deps("math_concepts", "math_dense_traits")
+target_end()
+
+target("math_matrix")
+    set_kind("headeronly")
+    add_headerfiles("matrix.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("math_concepts", "math_dense_traits", "math_matrix_view")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_matrixx")
+    set_kind("headeronly")
+    add_headerfiles("matrixx.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("math_concepts", "math_dense_traits", "math_matrix_view")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_lu_dcmp")
+    set_kind("headeronly")
+    add_headerfiles("lu_dcmp.hpp", "detail/dense_partial_pivot_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_deps("math_concepts")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_qr_dcmp")
+    set_kind("headeronly")
+    add_headerfiles("qr_dcmp.hpp", "detail/dense_degenerate_trait.hpp", "detail/dense_generate_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_deps("math_concepts")
+    if is_config("boyle_use_blas_lapack", "OpenBLAS") then
+        add_packages("openblas", {public = true})
+        add_defines("BOYLE_USE_BLAS_LAPACK", {public = true})
+        add_cxflags("-Wno-c99-extensions", {public = true})
+    end
+target_end()
+
+target("math_vec2")
+    set_kind("headeronly")
+    add_headerfiles("vec2.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("math_concepts", "math_dense_traits")
+    if is_config("boyle_use_simd", "AVX512") then
+        add_defines("BOYLE_USE_SIMD=1", {public = true})
+        add_cxxflags("-mavx512f", {public = true})
+    end
+target_end()
+
+target("math_vec3")
+    set_kind("headeronly")
+    add_headerfiles("vec3.hpp", "detail/dense_norm_trait.hpp")
+    add_includedirs("$(projectdir)/src", {public = true})
+    add_packages("boost", {public = true})
+    add_deps("common_in_in_in_out_result", "math_concepts", "math_dense_traits")
+    if is_config("boyle_use_simd", "AVX512") then
+        add_defines("BOYLE_USE_SIMD=1", {public = true})
+        add_cxxflags("-mavx512f", {public = true})
+    end
+target_end()
