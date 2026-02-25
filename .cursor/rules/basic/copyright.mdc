@@ -1,0 +1,54 @@
+---
+alwaysApply: true
+description: "Copyright and file header requirements for all source files in the Boyle project."
+---
+# Copyright and File Header Requirements
+
+## 1. Doxygen File Header Format
+
+**REQUIRED**: Include a Doxygen file header at the top of every source file.
+
+### C++ Header Files (`.hpp`)
+```cpp
+/**
+ * @file filename.hpp
+ * @author Author Name (email@example.com)
+ * @brief Brief description of the file
+ * @version 0.1
+ * @date YYYY-MM-DD
+ *
+ * @copyright Copyright (c) YYYY Boyle Development Team
+ *            All rights reserved.
+ *
+ */
+
+#pragma once
+```
+
+### C++ Source Files (`.cpp`)
+```cpp
+/**
+ * @file filename.cpp
+ * @author Author Name (email@example.com)
+ * @brief Brief description of the file
+ * @version 0.1
+ * @date YYYY-MM-DD
+ *
+ * @copyright Copyright (c) YYYY Boyle Development Team
+ *            All rights reserved.
+ *
+ */
+```
+
+### CMake Files (`CMakeLists.txt`)
+CMake files do not require a file header.
+
+## 2. Rules
+- Use the current year when creating new files
+- Place the Doxygen file header before any other content (including `#pragma once`)
+- **REQUIRED**: Include exactly one blank line between the file header and `#pragma once`
+- Use exactly this format - all fields (`@file`, `@author`, `@brief`, `@version`, `@date`, `@copyright`) are required
+
+## 3. Exceptions
+- **`.mdc` rule files**: YAML frontmatter (`---`) MUST be at line 1 for Cursor to parse. Omit copyright in `.mdc` files.
+- **CMake files**: No header required.

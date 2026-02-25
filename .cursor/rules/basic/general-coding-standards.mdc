@@ -1,0 +1,48 @@
+---
+globs: "*.cpp,*.hpp"
+description: "General coding standards that apply across all C++ files in the Boyle project."
+---
+# General Coding Standards
+
+## 1. Code Structure
+
+### Avoid Excessive Blank Lines
+- Use blank lines sparingly to separate semantic blocks
+- Don't add multiple consecutive blank lines
+- Don't add blank lines at the start/end of functions
+
+### Write Symmetric Logic Symmetrically
+- If you have symmetric operations, implement both sides consistently
+- Avoid asymmetric code patterns for symmetric logic
+
+## 2. Naming
+
+### Function Names Must Reflect Behavior
+- Function names should accurately describe what the function does
+- If a function has fallback/reset behavior, include that in the name
+
+## 3. Constants
+
+### Define Named Constants
+- Use named constants for magic numbers
+- Use `k` prefix for static constants: `kMaxSize`, `kDefaultEpsilon`
+- Exception: Simple values used only once in an obvious context
+
+```cpp
+// GOOD
+static constexpr std::size_t kMaxTableSize = 10;
+if (index < kMaxTableSize) { ... }
+
+// BAD
+if (index < 10) { ... }
+```
+
+## 4. Comments
+
+### English Only
+- **REQUIRED**: Write all comments, docstrings, and documentation in **English only**
+
+### Don't Comment Obvious Code
+- Do not add comments to simple, self-explanatory code
+- Only add comments when the logic is non-obvious or requires explanation
+- Good reasons to comment: explaining *why* something is done, documenting edge cases, clarifying complex algorithms

@@ -1,0 +1,123 @@
+---
+globs: "CMakeLists.txt,*.cmake"
+description: "CMake coding standards and best practices for the Boyle project. Covers project CMake functions, dependency management, and build configuration."
+---
+# CMake Coding Standards
+
+## 1. General Style
+- Use CMake 3.31+ features
+- Use **Ninja** as the generator
+- Use **CMake Presets** for build configurations
+- Indent with 2 or 4 spaces consistently (match surrounding code)
+
+## 2. Project CMake Functions
+
+### Library Declaration
+Use `boyle_cxx_library()` from [cmake/utils.cmake](mdc:cmake/utils.cmake):
+
+```cmake
+boyle_cxx_library(
+    NAME library_name
+    HDRS
+        header1.hpp
+        header2.hpp
+    SRCS
+        source.cpp
+    DEPS
+        dependency1
+        dependency2
+    PUBLIC
+)
+```
+
+#### Options
+- `PUBLIC` - Public library (visible to consumers)
+- `TESTONLY` - Test-only library
+- `DISABLE_INSTALL` - Skip install rules
+- Omitting `SRCS` (or providing header-only sources) creates an `INTERFACE` library
+
+### Module Declaration
+Use `boyle_cxx_module()` for C++20 modules:
+
+```cmake
+boyle_cxx_module(
+    NAME module_name
+    IXXS
+        module_interface.ixx
+    DEPS
+        dependency
+    PUBLIC
+)
+```
+
+### Test Declaration
+Use `boyle_cxx_test()`:
+
+```cmake
+boyle_cxx_test(
+    NAME component_test
+    SRCS component_test.cpp
+    DEPS component_library
+)
+```
+
+Test targets automatically link `cxxopts`, `doctest`, and `Matplot++`.
+
+## 3. Dependency Management
+
+### CPM (CMake Package Manager)
+- Dependencies are managed via CPM in [cmake/third_party.cmake](mdc:cmake/third_party.cmake)
+- CPM source cache: `${CMAKE_SOURCE_DIR}/third_party`
+
+```cmake
+CPMAddPackage(
+    NAME package_name
+    VERSION x.y.z
+    GITHUB_REPOSITORY owner/repo
+    OPTIONS
+        "OPTION_NAME value"
+)
+```
+
+### Adding New Dependencies
+1. Add `CPMAddPackage()` call in [cmake/third_party.cmake](mdc:cmake/third_party.cmake)
+2. Add the dependency to the target's `DEPS` list in the `CMakeLists.txt`
+
+## 4. CMake Presets
+
+### Configure Presets
+Defined in [CMakePresets.json](mdc:CMakePresets.json):
+- `linux-gcc-x64` - Linux GCC x86_64
+- `linux-clang-x64` - Linux Clang x86_64
+- `darwin-gcc-arm64` - macOS GCC ARM64
+- `darwin-clang-arm64` - macOS Clang ARM64
+- `windows-msvc-x64` - Windows MSVC x86_64
+
+### User Presets
+Developer-specific presets in `CMakeUserPresets.json` (symlinked from `developers/<name>/`).
+
+## 5. Build Configuration Options
+
+| Option                     | Default    | Description                          |
+| -------------------------- | ---------- | ------------------------------------ |
+| `BOYLE_CHECK_PARAMS`       | `OFF`      | Enable parameter checking            |
+| `BOYLE_BUILD_TESTING`      | `ON`       | Enable testing                       |
+| `BOYLE_ENABLE_INSTALL`     | `ON`       | Enable install targets               |
+| `BOYLE_USE_BLAS_LAPACK`    | `OpenBLAS` | BLAS/LAPACK backend                  |
+| `BOYLE_USE_BOOST_UNORDERED`| `ON`       | Enable Boost.unordered containers    |
+| `BOYLE_USE_SIMD`           | `OFF`      | SIMD implementation (AVX512/OFF)     |
+| `BUILD_SHARED_LIBS`        | `OFF`      | Build shared libraries               |
+| `CMAKE_UNITY_BUILD`        | `OFF`      | Enable unity build                   |
+
+## 6. Toolchain Files
+- Toolchain files live in `cmake/toolchains/`
+- Each platform/compiler combination has a dedicated toolchain file
+- Toolchain files set compilers, flags, and platform-specific options
+
+## 7. Best Practices
+- **REQUIRED**: Use `target_*` commands instead of global `add_*` commands
+- **REQUIRED**: Specify `PUBLIC`, `PRIVATE`, or `INTERFACE` for all `target_*` commands
+- Prefer `boyle_cxx_library()` and `boyle_cxx_test()` over raw `add_library()`/`add_executable()`
+- Use generator expressions for build/install interface differences
+- Set `CMAKE_COMPILE_WARNING_AS_ERROR=ON` for all builds
+- Export `compile_commands.json` for IDE/clang-tidy integration
