@@ -1,0 +1,117 @@
+---
+globs: "*.mdc"
+description: "Coding standards for writing Cursor Rules (.mdc files) in the Boyle project."
+---
+# Cursor Rules Coding Standards
+
+## 1. Overview
+
+Cursor Rules (`.mdc` files) define AI assistant behavior and coding standards for the project. This document specifies how to write and organize these rules.
+
+## 2. File Organization
+
+### 2.1 Directory Structure
+
+```
+.cursor/rules/
+├── basic/           # General rules (alwaysApply: true)
+├── cpp/             # C++ language rules
+├── cmake/           # CMake build system rules
+└── cursor_rules/    # Rules for writing rules
+```
+
+### 2.2 File Naming
+
+- Use `lower-case-with-hyphens.mdc` format
+- Use descriptive names that indicate the rule's purpose
+  - ✅ `<language>-coding-standards.mdc`
+  - ✅ `<language>-testing-guidelines.mdc`
+  - ❌ `CodingStandards.mdc`
+  - ❌ `rules.mdc` (too generic)
+
+## 3. Frontmatter Configuration
+
+Every `.mdc` file must start with a YAML frontmatter block:
+
+```yaml
+---
+globs: "*.hpp,*.cpp"              # File patterns this rule applies to
+description: "Brief description"  # One-line description of the rule
+---
+```
+
+### 3.1 Application Modes
+
+| Mode | Frontmatter | Use Case |
+|------|-------------|----------|
+| Always Apply | `alwaysApply: true` | General rules that apply to all code |
+| Specific Files | `globs: "*.ext"` | Language-specific rules |
+| Manual | Neither | Reference documentation |
+
+### 3.2 Globs Patterns
+
+- Use specific patterns to target files accurately
+- **IMPORTANT**: Multiple patterns must be comma-separated **without spaces**
+
+```yaml
+# Single pattern
+globs: "*.hpp"
+
+# Multiple patterns (NO spaces after commas!)
+globs: "*.cc,*.h,*.cpp,*.hpp"
+
+# Test files
+globs: "*_test.cpp"
+
+# CMake files
+globs: "CMakeLists.txt,*.cmake"
+```
+
+## 4. Content Structure
+
+### 4.1 Document Layout
+
+```markdown
+# Rule Title
+
+## 1. Overview / Principles
+Brief introduction and guiding principles.
+
+## 2. Main Sections
+Detailed rules organized by topic.
+
+### 2.1 Subsection
+Specific rules with examples.
+```
+
+### 4.2 Writing Style
+
+- **Language**: Write all rules in **English**
+- **Tone**: Use clear, direct, and imperative language
+- **Format**: Use bullet points for lists, tables for comparisons
+- **Examples**: Always include ✅ (correct) and ❌ (incorrect) examples
+
+### 4.3 Rule Emphasis
+
+Use these markers for rule importance:
+
+- `**REQUIRED**`: Must follow, no exceptions
+- `**MANDATORY**`: Must follow, no exceptions (alternative)
+- `**Recommended**`: Best practice, follow unless there's good reason not to
+- `**Optional**`: Nice to have, use when appropriate
+
+## 5. Cross-References
+
+### 5.1 Linking to Other Files
+
+Use MDC link format to reference other files:
+
+```markdown
+See [cmake/utils.cmake](mdc:cmake/utils.cmake) for details.
+```
+
+### 5.2 Referencing Other Rules
+
+```markdown
+Refer to the [C++ Coding Standards](mdc:.cursor/rules/cpp/cpp-coding-standards.mdc) for naming conventions.
+```

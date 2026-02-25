@@ -1,0 +1,68 @@
+---
+alwaysApply: true
+description: "Development workflow and best practices for the Boyle project."
+---
+# Development Workflow
+
+## 1. Development Steps (Execute in Order)
+1. Implement functionality
+2. Write tests
+3. Run tests to verify functionality
+4. **MANDATORY**: After ANY code changes, run `clang-format -i {files}` to format code
+5. **MANDATORY**: After ANY code changes, check and fix linting errors
+6. Only then consider the task complete
+
+## 2. File Creation Rules
+- **NEVER create demo programs, example files, README files, or documentation unless explicitly requested by the user**
+- **ONLY create files that are explicitly requested by the user**
+- **If you think a demo would be useful, DO NOT create it - ask the user first**
+
+## 3. Code Quality
+- **MANDATORY**: Run `clang-format -i {files}` to format code immediately after implementation
+- **MANDATORY**: Follow clang-tidy rules and fix warnings before considering code complete
+- Always include appropriate Doxygen file headers
+- Follow naming conventions as defined in the C++ coding standards
+- Use proper error handling patterns
+- Include necessary tests for new functionality
+
+## 4. Build System (CMake)
+
+### Configure
+```bash
+cmake --preset <preset-name>
+```
+
+### Build
+```bash
+cmake --build --preset <preset-name>
+```
+
+### Test
+```bash
+ctest --preset <preset-name>
+```
+
+### Available Presets
+- `linux-gcc-x64` - Linux GCC x86_64
+- `linux-clang-x64` - Linux Clang x86_64
+- `darwin-gcc-arm64` - macOS GCC ARM64
+- `darwin-clang-arm64` - macOS Clang ARM64
+- `windows-msvc-x64` - Windows MSVC x86_64
+
+## 5. Dependencies
+- Add new dependencies via CPM (CMake Package Manager) in [cmake/third_party.cmake](mdc:cmake/third_party.cmake)
+- Use CPM's `CPMAddPackage()` to declare dependencies
+- Prefer CPM-managed dependencies over system packages
+
+## 6. Performance
+- Profile code for performance bottlenecks
+- Use appropriate data structures and algorithms
+- Consider memory allocation patterns
+- Use `constexpr` where possible for compile-time evaluation
+- Use `alignas(32)` for SIMD-friendly types
+- Apply GNU attributes (`[[using gnu: ...]]`) appropriately for optimization hints
+
+## 7. Documentation Policy
+- **STRICTLY PROHIBITED**: Creating documentation files unless explicitly requested
+- **FORBIDDEN**: README.md, docs/, examples/, demos/, samples/
+- **REQUIRED**: Ask user permission before creating any file not in the original request

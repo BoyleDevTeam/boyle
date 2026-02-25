@@ -1,0 +1,22 @@
+boyle_cxx_test(
+  NAME
+    cvxopm_qp_problem_test
+  SRCS
+    "qp_problem_test.cpp"
+  DEPS
+    cvxopm_qp_problem
+)
+
+boyle_cxx_test(
+  NAME
+    cvxopm_dense_problem_test
+  SRCS
+    "dense_problem_test.cpp"
+  DEPS
+    math_utils
+    math_vectorx
+    math_matrixx
+    math_quadratic_mdfunction
+    math_rosenbrock_function
+    cvxopm_dense_problem
+)

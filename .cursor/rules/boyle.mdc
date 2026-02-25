@@ -1,0 +1,94 @@
+---
+alwaysApply: true
+description: "Boyle Library project context - high-performance C++23 mathematical library for autonomous driving and robotics."
+---
+# Boyle Library - Project Context
+
+> High-performance C++23 mathematical library for autonomous driving and robotics
+
+## Project Overview
+
+This is the **Boyle Library**, providing fundamental numeric implementations for autonomous driving and robotics:
+
+- **Piecewise polynomial functions/curves** (linear, cubic, quintic)
+- **Sparse matrix formats** (COO, CSC, CSR, DOK, LIL)
+- **Convex optimization** (BFGS, L-BFGS, Amoeba, OSQP)
+- **Dense linear algebra** with optional BLAS/LAPACK acceleration
+
+## Technical Requirements
+
+| Requirement  | Specification                      |
+| ------------ | ---------------------------------- |
+| C++ Standard | C++23 with GNU extensions          |
+| CMake        | 3.31+ with Ninja                   |
+| Compilers    | GCC 14+ or Clang 20+              |
+| Testing      | doctest 2.4.12                     |
+| Formatting   | clang-format 20+ (Microsoft style) |
+| Linting      | clang-tidy 20+                     |
+
+## Namespace Structure
+
+```
+boyle                           # Root namespace
+├── boyle::math                 # Mathematical primitives
+│   ├── boyle::math::detail     # Implementation details (private)
+│   └── boyle::math::pmr        # PMR allocator variants
+├── boyle::cvxopm               # Convex optimization
+├── boyle::kinetics             # Motion planning
+└── boyle::common               # Common utilities
+```
+
+## Dependencies Quick Reference
+
+| Library             | Version | Header                           | Purpose                  |
+| ------------------- | ------- | -------------------------------- | ------------------------ |
+| Boost               | 1.90.0  | `boost/serialization/access.hpp` | Serialization, headers   |
+| doctest             | 2.4.12  | `doctest/doctest.h`              | Unit testing             |
+| spdlog              | 1.17.0  | `spdlog/spdlog.h`               | Logging                  |
+| cxxopts             | 3.3.1   | `cxxopts.hpp`                    | CLI parsing              |
+| Microsoft Proxy     | 4.0.2   | `proxy/proxy.h`                  | Type-erased polymorphism |
+| Matplot++           | 1.2.2   | `matplot/matplot.h`              | Test visualization       |
+| OSQP                | 1.0.0   | `osqp/osqp.h`                   | QP solving               |
+| OpenBLAS            | -       | `cblas.h`, `lapacke.h`           | BLAS/LAPACK (optional)   |
+
+## Common Project Macros
+
+From `boyle/common/utils/macros.hpp`:
+
+```cpp
+ENABLE_COPY(ClassName)
+DISABLE_COPY(ClassName)
+ENABLE_MOVE(ClassName)
+DISABLE_MOVE(ClassName)
+ENABLE_COPY_AND_MOVE(ClassName)
+DISABLE_COPY_AND_MOVE(ClassName)
+ENABLE_IMPLICIT_CONSTRUCTORS(ClassName)
+DISABLE_IMPLICIT_CONSTRUCTORS(ClassName)
+MAKE_SINGLETON(ClassName)
+```
+
+## Project Concepts (from boyle/math/concepts.hpp)
+
+```cpp
+Arithmetic          // std::is_arithmetic_v<T>
+ComplexArithmetic   // std::complex<T>
+ScalarArithmetic    // Arithmetic || ComplexArithmetic
+VecArithmetic       // Vector-like types with data(), size(), dot()
+MatArithmetic       // Matrix-like types with nrows(), ncols()
+GeneralArithmetic   // ScalarArithmetic || VecArithmetic || MatArithmetic
+derivedFromTemplate // Checks if Derived inherits from Base<auto...>
+Allocatory          // Allocator concept
+Iterable            // Has begin()/end()
+```
+
+## Coding Standards Reference
+
+For detailed coding standards, see the modular rules:
+- [C++ Coding Standards](mdc:.cursor/rules/cpp/cpp-coding-standards.mdc)
+- [C++ Testing Guidelines](mdc:.cursor/rules/cpp/cpp-testing-guidelines.mdc)
+- [CMake Coding Standards](mdc:.cursor/rules/cmake/cmake-coding-standards.mdc)
+- [Development Workflow](mdc:.cursor/rules/basic/development-workflow.mdc)
+- [Copyright Requirements](mdc:.cursor/rules/basic/copyright.mdc)
+- [TODO Format](mdc:.cursor/rules/basic/todo-format.mdc)
+- [Security Requirements](mdc:.cursor/rules/basic/security.mdc)
+- [General Coding Standards](mdc:.cursor/rules/basic/general-coding-standards.mdc)

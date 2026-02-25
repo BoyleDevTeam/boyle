@@ -1,0 +1,14 @@
+CPMAddPackage(
+  NAME Boost
+  VERSION 1.90.0
+  URL https://github.com/boostorg/boost/releases/download/boost-1.90.0/boost-1.90.0-cmake.tar.xz
+  URL_HASH SHA256=aca59f889f0f32028ad88ba6764582b63c916ce5f77b31289ad19421a96c555f
+  OPTIONS
+    "CMAKE_COMPILE_WARNING_AS_ERROR OFF"
+    "CMAKE_UNITY_BUILD OFF"
+    "BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS}"
+    "BOOST_RUNTIME_LINK $<IF:$<BOOL:${BUILD_SHARED_LIBS}>,shared,static>"
+    "BOOST_ENABLE_CMAKE ON"
+    "BOOST_SKIP_INSTALL_RULES OFF"
+    "BOOST_INCLUDE_LIBRARIES headers\\\;serialization"
+)

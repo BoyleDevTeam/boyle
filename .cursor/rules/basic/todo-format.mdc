@@ -1,0 +1,34 @@
+---
+alwaysApply: true
+description: "TODO comment format and conventions for the Boyle project."
+---
+# TODO Format
+
+## 1. Standard TODO Format
+
+Use the following format for TODO comments:
+
+```
+// TODO(github_id): description [issue reference]
+```
+
+### Format Components
+- `github_id`: Your GitHub username (required)
+- `description`: Brief description of what needs to be done (required)
+- `[issue reference]`: Optional reference to issue, PR, or other context
+
+### Examples
+
+```cpp
+// TODO(houchen_li): Implement error handling for edge cases
+// TODO(houchen_li): Optimize this algorithm for large datasets [#123]
+// TODO(houchen_li): Add unit tests for this function [issue: BOYLE-456]
+// TODO(houchen_li): Refactor after API stabilizes [PR #789]
+```
+
+## 2. Rules
+- **REQUIRED**: Always include your GitHub ID in parentheses
+- Keep descriptions concise but informative
+- Use `[issue reference]` to link to related issues, PRs, or tickets when applicable
+- TODO comments should describe actionable tasks
+- Remove TODO comments once the task is completed

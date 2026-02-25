@@ -1,0 +1,210 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 31,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux-gcc-x64",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu",
+      "description": "Using compilers: C = gcc, CXX = g++",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/linux-gcc-x64.cmake",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-clang-x64",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu",
+      "description": "Using compilers: C = clang, CXX = clang++",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/linux-clang-x64.cmake",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "darwin-gcc-arm64",
+      "displayName": "Darwin GCC aarch64-apple-darwin",
+      "description": "Using compilers: C = gcc, CXX = g++",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/darwin-gcc-arm64.cmake",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "darwin-clang-arm64",
+      "displayName": "Darwin Clang aarch64-apple-darwin",
+      "description": "Using compilers: C = clang, CXX = clang++",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/darwin-clang-arm64.cmake",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "windows-msvc-x64",
+      "displayName": "Windows MSVC x86_64",
+      "description": "Using compilers: C = cl.exe, CXX = cl.exe",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/windows-msvc-x64.cmake",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": ["Windows"]
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux-gcc-x64",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu",
+      "configurePreset": "linux-gcc-x64",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "linux-clang-x64",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu",
+      "configurePreset": "linux-clang-x64",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "darwin-gcc-arm64",
+      "displayName": "Darwin GCC aarch64-apple-darwin",
+      "configurePreset": "darwin-gcc-arm64",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "darwin-clang-arm64",
+      "displayName": "Darwin Clang aarch64-apple-darwin",
+      "configurePreset": "darwin-clang-arm64",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    },
+    {
+      "name": "windows-msvc-x64",
+      "displayName": "Windows MSVC x86_64",
+      "configurePreset": "windows-msvc-x64",
+      "inheritConfigureEnvironment": true,
+      "targets": "all",
+      "jobs": 0
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "linux-gcc-x64",
+      "displayName": "Linux GCC x86_64-pc-linux-gnu",
+      "configurePreset": "linux-gcc-x64",
+      "inheritConfigureEnvironment": true,
+      "environment": {
+        "ASAN_OPTIONS": "detect_odr_violation=0"
+      },
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 1
+      }
+    },
+    {
+      "name": "linux-clang-x64",
+      "displayName": "Linux Clang x86_64-pc-linux-gnu",
+      "configurePreset": "linux-clang-x64",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 1
+      }
+    },
+    {
+      "name": "darwin-gcc-arm64",
+      "displayName": "Darwin GCC aarch64-apple-darwin",
+      "configurePreset": "darwin-gcc-arm64",
+      "inheritConfigureEnvironment": true,
+      "environment": {
+        "ASAN_OPTIONS": "detect_odr_violation=0"
+      },
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 1
+      }
+    },
+    {
+      "name": "darwin-clang-arm64",
+      "displayName": "Darwin Clang aarch64-apple-darwin",
+      "configurePreset": "darwin-clang-arm64",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 1
+      }
+    },
+    {
+      "name": "windows-msvc-x64",
+      "displayName": "Windows MSVC x86_64",
+      "configurePreset": "windows-msvc-x64",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 1
+      }
+    }
+  ]
+}
