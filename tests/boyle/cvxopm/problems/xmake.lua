@@ -1,0 +1,11 @@
+target("cvxopm_qp_problem_test")
+    add_rules("boyle.cxx.test")
+    add_files("qp_problem_test.cpp")
+    add_deps("cvxopm_qp_problem")
+target_end()
+
+target("cvxopm_dense_problem_test")
+    add_rules("boyle.cxx.test")
+    add_files("dense_problem_test.cpp")
+    add_deps("math_utils", "math_vectorx", "math_matrixx", "math_quadratic_mdfunction", "math_rosenbrock_function", "cvxopm_dense_problem")
+target_end()

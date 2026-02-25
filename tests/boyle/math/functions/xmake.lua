@@ -1,0 +1,23 @@
+target("math_function_proxy_test")
+    add_rules("boyle.cxx.test")
+    add_files("function_proxy_test.cpp")
+    add_deps("math_function_proxy", "math_piecewise_linear_function", "math_piecewise_cubic_function", "math_piecewise_quintic_function")
+target_end()
+
+target("math_piecewise_linear_function1_test")
+    add_rules("boyle.cxx.test")
+    add_files("piecewise_linear_function1_test.cpp")
+    add_deps("math_piecewise_linear_function", "math_utils")
+target_end()
+
+target("math_piecewise_cubic_function1_test")
+    add_rules("boyle.cxx.test")
+    add_files("piecewise_cubic_function1_test.cpp")
+    add_deps("math_piecewise_cubic_function")
+target_end()
+
+target("math_piecewise_quintic_function1_test")
+    add_rules("boyle.cxx.test")
+    add_files("piecewise_quintic_function1_test.cpp")
+    add_deps("math_piecewise_quintic_function")
+target_end()

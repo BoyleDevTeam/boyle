@@ -1,0 +1,11 @@
+--- a/pocketfft_hdronly.h
++++ b/pocketfft_hdronly.h
+@@ -57,7 +57,8 @@
+ #include <memory>
+ #include <vector>
+ #include <complex>
+ #include <algorithm>
++#include <cstdint>
+ #if POCKETFFT_CACHE_SIZE!=0
+ #include <array>
+ #include <mutex>

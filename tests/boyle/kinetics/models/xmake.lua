@@ -1,0 +1,23 @@
+target("kinetics_route_line_cubic_acc_model_test")
+    add_rules("boyle.cxx.test")
+    add_files("route_line_cubic_acc_model_test.cpp")
+    add_deps("kinetics_route_line_cubic_acc_model")
+target_end()
+
+target("kinetics_route_line_quintic_acc_model_test")
+    add_rules("boyle.cxx.test")
+    add_files("route_line_quintic_acc_model_test.cpp")
+    add_deps("kinetics_route_line_quintic_acc_model")
+target_end()
+
+target("kinetics_route_line_cubic_offset_model_test")
+    add_rules("boyle.cxx.test")
+    add_files("route_line_cubic_offset_model_test.cpp")
+    add_deps("kinetics_route_line_cubic_offset_model")
+target_end()
+
+target("kinetics_route_line_quintic_offset_model_test")
+    add_rules("boyle.cxx.test")
+    add_files("route_line_quintic_offset_model_test.cpp")
+    add_deps("kinetics_route_line_quintic_offset_model")
+target_end()

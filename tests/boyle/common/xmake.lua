@@ -1,0 +1,5 @@
+target("common_fsm_test")
+    add_rules("boyle.cxx.test")
+    add_files("fsm_test.cpp")
+    add_deps("common_fsm", "common_logging")
+target_end()

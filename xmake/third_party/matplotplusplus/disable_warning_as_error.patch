@@ -1,0 +1,49 @@
+--- a/source/matplot/util/popen.cpp
++++ b/source/matplot/util/popen.cpp
+@@ -2,6 +2,7 @@
+ #include <matplot/util/popen.h>
+ #include <array>
+ #include <system_error>
++#include <cstdlib>
+ #include <cstring> // strerror
+
+ #ifdef _WIN32
+--- a/source/matplot/util/common.cpp
++++ b/source/matplot/util/common.cpp
+@@ -866,8 +866,8 @@ namespace matplot {
+
+         // Initial calculations
+         if (log) {
+-            std::invalid_argument("Not implemented yet. The library does not "
+-                                  "need that as it is.");
++            throw std::invalid_argument("Not implemented yet. The library does not "
++                                        "need that as it is.");
+         }
+
+         // Data range
+--- a/cmake/functions/target_options.cmake
++++ b/cmake/functions/target_options.cmake
+@@ -6,11 +6,12 @@ function(target_pedantic_warnings TARGET
+         # STL classes don't need to have dll-interface to be used by clients of Matplot++ classes
+         target_compile_options(${TARGET_NAME} PRIVATE /wd4251)
+         target_compile_options(${TARGET_NAME} PRIVATE /wd2220)
++        target_compile_options(${TARGET_NAME} PRIVATE /wd4701)
+     else()
+         if (MSVC)
+-            target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
++            target_compile_options(${TARGET_NAME} PRIVATE /W4)
+         else ()
+-            target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
++            target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -pedantic)
+         endif ()
+     endif()
+ endfunction()
+@@ -30,7 +31,7 @@ macro(add_pedantic_warnings)
+     if (MSVC)
+         add_compile_options(/W4 /WX)
+     else ()
+-        add_compile_options(-Wall -Wextra -pedantic -Werror)
++        add_compile_options(-Wall -Wextra -pedantic)
+     endif ()
+ endmacro()
+

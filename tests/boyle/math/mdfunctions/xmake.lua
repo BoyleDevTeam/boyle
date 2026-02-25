@@ -1,0 +1,23 @@
+target("math_mdfunction_proxy_test")
+    add_rules("boyle.cxx.test")
+    add_files("mdfunction_proxy_test.cpp")
+    add_deps("math_mdfunction_proxy", "math_vector", "math_vectorx", "math_matrix", "math_matrixx", "math_linear_mdfunction", "math_quadratic_mdfunction")
+target_end()
+
+target("math_linear_mdfunction_test")
+    add_rules("boyle.cxx.test")
+    add_files("linear_mdfunction_test.cpp")
+    add_deps("math_vector", "math_vectorx", "math_linear_mdfunction")
+target_end()
+
+target("math_quadratic_mdfunction_test")
+    add_rules("boyle.cxx.test")
+    add_files("quadratic_mdfunction_test.cpp")
+    add_deps("math_vector", "math_vectorx", "math_matrix", "math_matrixx", "math_quadratic_mdfunction")
+target_end()
+
+target("math_rosenbrock_function_test")
+    add_rules("boyle.cxx.test")
+    add_files("rosenbrock_function_test.cpp")
+    add_deps("math_vec2", "math_rosenbrock_function")
+target_end()
