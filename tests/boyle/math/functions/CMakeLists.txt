@@ -1,0 +1,39 @@
+boyle_cxx_test(
+  NAME
+    math_function_proxy_test
+  SRCS
+    function_proxy_test.cpp
+  DEPS
+    math_function_proxy
+    math_piecewise_linear_function
+    math_piecewise_cubic_function
+    math_piecewise_quintic_function
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_linear_function1_test
+  SRCS
+    "piecewise_linear_function1_test.cpp"
+  DEPS
+    math_piecewise_linear_function
+    math_utils
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_cubic_function1_test
+  SRCS
+    "piecewise_cubic_function1_test.cpp"
+  DEPS
+    math_piecewise_cubic_function
+)
+
+boyle_cxx_test(
+  NAME
+    math_piecewise_quintic_function1_test
+  SRCS
+    "piecewise_quintic_function1_test.cpp"
+  DEPS
+    math_piecewise_quintic_function
+)

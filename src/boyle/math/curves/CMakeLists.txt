@@ -1,0 +1,63 @@
+boyle_cxx_library(
+  NAME
+    math_curve_proxy
+  HDRS
+    "curve_proxy.hpp"
+    "sl.hpp"
+    "slv.hpp"
+  DEPS
+    msft_proxy
+    math_concepts
+    math_vec2
+    math_vec3
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_linear_curve
+  HDRS
+    "piecewise_linear_curve.hpp"
+    "sl.hpp"
+    "slv.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_piecewise_linear_function
+    math_utils
+    math_vec2
+    math_vec3
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_cubic_curve
+  HDRS
+    "piecewise_cubic_curve.hpp"
+    "sl.hpp"
+    "slv.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_cubic_interpolation
+    math_piecewise_cubic_function
+    math_utils
+    math_vec2
+    math_vec3
+)
+
+boyle_cxx_library(
+  NAME
+    math_piecewise_quintic_curve
+  HDRS
+    "piecewise_quintic_curve.hpp"
+    "sl.hpp"
+    "slv.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_piecewise_quintic_function
+    math_quintic_interpolation
+    math_utils
+    math_vec2
+    math_vec3
+)

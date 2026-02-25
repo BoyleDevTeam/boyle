@@ -1,0 +1,67 @@
+boyle_cxx_test(
+  NAME
+    math_vector_test
+  SRCS
+    "vector_test.cpp"
+  DEPS
+    math_vector_view
+    math_vector
+    math_vectorx
+)
+
+boyle_cxx_test(
+  NAME
+    math_vec2_test
+  SRCS
+    "vec2_test.cpp"
+  DEPS
+    math_vec2
+)
+
+boyle_cxx_test(
+  NAME
+    math_vec3_test
+  SRCS
+    "vec3_test.cpp"
+  DEPS
+    math_vec3
+)
+
+boyle_cxx_test(
+  NAME
+    math_matrix_test
+  SRCS
+    "matrix_test.cpp"
+  DEPS
+    math_matrix_view
+    math_matrix
+    math_matrixx
+)
+
+boyle_cxx_test(
+  NAME
+    math_lu_dcmp_test
+  SRCS
+    "lu_dcmp_test.cpp"
+  DEPS
+    math_type_traits
+    math_lu_dcmp
+    math_vector
+    math_vectorx
+    math_matrix
+    math_matrixx
+)
+
+boyle_cxx_test(
+  NAME
+    math_qr_dcmp_test
+  SRCS
+    "qr_dcmp_test.cpp"
+  DEPS
+    math_type_traits
+    math_qr_dcmp
+    math_vector
+    math_vectorx
+    math_matrix
+    math_matrixx
+)

@@ -1,0 +1,69 @@
+boyle_cxx_test(
+  NAME
+    cvxopm_osqp_solver_test
+  SRCS
+    "osqp_solver_test.cpp"
+  DEPS
+    Boost::serialization
+    cvxopm_qp_problem
+    cvxopm_settings
+    cvxopm_result
+    cvxopm_info
+    cvxopm_osqp_solver
+)
+
+boyle_cxx_test(
+  NAME
+    cvxopm_lnsrch_solver_test
+  SRCS
+    "lnsrch_solver_test.cpp"
+  DEPS
+    math_vectorx
+    math_matrixx
+    math_quadratic_mdfunction
+    math_rosenbrock_function
+    cvxopm_dense_problem
+    cvxopm_lnsrch_solver
+)
+
+boyle_cxx_test(
+  NAME
+    cvxopm_bfgs_solver_test
+  SRCS
+    "bfgs_solver_test.cpp"
+  DEPS
+    math_vectorx
+    math_matrixx
+    math_quadratic_mdfunction
+    math_rosenbrock_function
+    cvxopm_dense_problem
+    cvxopm_bfgs_solver
+)
+
+boyle_cxx_test(
+  NAME
+    cvxopm_lbfgs_solver_test
+  SRCS
+    "lbfgs_solver_test.cpp"
+  DEPS
+    math_vectorx
+    math_matrixx
+    math_quadratic_mdfunction
+    math_rosenbrock_function
+    cvxopm_dense_problem
+    cvxopm_lbfgs_solver
+)
+
+boyle_cxx_test(
+  NAME
+    cvxopm_amoeba_solver_test
+  SRCS
+    "amoeba_solver_test.cpp"
+  DEPS
+    math_vectorx
+    math_matrixx
+    math_quadratic_mdfunction
+    math_rosenbrock_function
+    cvxopm_dense_problem
+    cvxopm_amoeba_solver
+)

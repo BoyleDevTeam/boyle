@@ -1,0 +1,15 @@
+[language-server.clangd]
+command = "clangd"
+args = [
+    "--log=verbose",
+    "--pretty",
+    "--all-scopes-completion",
+    "--completion-style=bundled",
+    "--header-insertion=never","--header-insertion-decorators",
+    "--function-arg-placeholders",
+    "--background-index",
+    "--clang-tidy",
+    "--fallback-style=Microsoft",
+    "-j=8",
+    "--pch-storage=memory"
+]

@@ -1,0 +1,78 @@
+boyle_cxx_test(
+  NAME
+    math_sparse_matrix_proxy_test
+  SRCS
+    "sparse_matrix_proxy_test.cpp"
+  DEPS
+    math_sparse_matrix_proxy
+    math_dok_matrix
+    math_lil_matrix
+    math_coo_matrix
+    math_csc_matrix
+    math_csr_matrix
+)
+
+boyle_cxx_test(
+  NAME
+    math_dok_matrix_test
+  SRCS
+    "dok_matrix_test.cpp"
+  DEPS
+    math_dok_matrix
+    math_lil_matrix
+    math_coo_matrix
+    math_csc_matrix
+    math_csr_matrix
+)
+
+boyle_cxx_test(
+  NAME
+    math_lil_matrix_test
+  SRCS
+    "lil_matrix_test.cpp"
+  DEPS
+    math_lil_matrix
+    math_dok_matrix
+    math_coo_matrix
+    math_csc_matrix
+    math_csr_matrix
+)
+
+boyle_cxx_test(
+  NAME
+    math_coo_matrix_test
+  SRCS
+    "coo_matrix_test.cpp"
+  DEPS
+    math_coo_matrix
+    math_dok_matrix
+    math_lil_matrix
+    math_csc_matrix
+    math_csr_matrix
+)
+
+boyle_cxx_test(
+  NAME
+    math_csc_matrix_test
+  SRCS
+    "csc_matrix_test.cpp"
+  DEPS
+    math_dok_matrix
+    math_dok_matrix
+    math_lil_matrix
+    math_coo_matrix
+    math_csr_matrix
+)
+
+boyle_cxx_test(
+  NAME
+    math_csr_matrix_test
+  SRCS
+    "csr_matrix_test.cpp"
+  DEPS
+    math_csr_matrix
+    math_dok_matrix
+    math_lil_matrix
+    math_coo_matrix
+    math_csc_matrix
+)

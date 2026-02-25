@@ -1,0 +1,116 @@
+# Boyle Library - Cursor Rules
+
+You are assisting with the Boyle Library, a high-performance C++23 mathematical library for autonomous driving and robotics.
+
+## Critical Rules
+
+1. **C++ Standard**: Always use C++23 features with GNU extensions
+2. **Trailing Return Types**: ALWAYS use `auto func() -> ReturnType` syntax
+3. **Final Classes**: Mark all classes with `final` keyword
+4. **Naming**:
+    - Classes: `PascalCase` (e.g., `Vector`, `PiecewiseCubicCurve`)
+    - Functions: `camelCase` (e.g., `euclidean()`, `selfConjugated()`)
+    - Members: `m_` prefix (e.g., `m_data`, `m_vec_of_s`)
+    - Constants: `k` prefix (e.g., `kSize`, `kDuplicateCriterion`)
+    - Types: `snake_case` (e.g., `value_type`, `size_type`)
+5. **Files**: Use `snake_case.hpp` for headers, `*_test.cpp` for tests
+
+## Header Template
+
+```cpp
+/**
+ * @file filename.hpp
+ * @author Author Name (email@example.com)
+ * @brief
+ * @version 0.1
+ * @date YYYY-MM-DD
+ *
+ * @copyright Copyright (c) YYYY Boyle Development Team
+ *            All rights reserved.
+ */
+
+#pragma once
+
+#include <standard_headers>
+#include "third/party/headers.hpp"
+#include "boyle/project/headers.hpp"
+
+namespace boyle::math {
+// code
+} // namespace boyle::math
+```
+
+## Function Attributes
+
+Use GNU attributes for optimization:
+
+```cpp
+[[using gnu: pure, always_inline, hot]]
+constexpr auto euclidean() const noexcept -> value_type;
+```
+
+## Parameter Checking Pattern
+
+```cpp
+noexcept(!BOYLE_CHECK_PARAMS)  // Use this for throwing functions
+
+#if BOYLE_CHECK_PARAMS == 1
+    if (condition) [[unlikely]] {
+        throw std::invalid_argument("message");
+    }
+#endif
+```
+
+## Project Concepts (from boyle/math/concepts.hpp)
+
+- `ScalarArithmetic` - Arithmetic types (int, float, double)
+- `ComplexArithmetic` - std::complex types
+- `VecArithmetic` - Vector types with data(), size(), dot()
+- `MatArithmetic` - Matrix types with nrows(), ncols()
+- `Allocatory` - Allocator concept
+
+## Test Pattern
+
+```cpp
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest/doctest.h"
+
+namespace boyle::math {
+
+TEST_CASE_TEMPLATE("TestName", T, Type1, Type2) {
+    CHECK_EQ(actual, doctest::Approx(expected).epsilon(1E-8));
+}
+
+} // namespace boyle::math
+```
+
+## CMake Functions
+
+```cmake
+boyle_cxx_library(NAME lib HDRS h.hpp DEPS dep PUBLIC)
+boyle_cxx_test(NAME test SRCS test.cpp DEPS lib)
+```
+
+## Key Dependencies
+
+- Boost 1.90.0 (serialization)
+- doctest 2.4.12 (testing)
+- spdlog 1.16.0 (logging)
+- OpenBLAS (BLAS/LAPACK, optional)
+- OSQP 1.0.0 (QP solver)
+
+## Build Commands
+
+```bash
+cmake --preset linux-gcc-x64
+cmake --build --preset linux-gcc-x64
+ctest --preset linux-gcc-x64
+```
+
+## Namespaces
+
+- `boyle::math` - Math primitives
+- `boyle::math::detail` - Implementation details
+- `boyle::cvxopm` - Optimization
+- `boyle::kinetics` - Motion planning
+- `boyle::common` - Utilities

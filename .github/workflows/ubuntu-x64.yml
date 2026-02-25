@@ -1,0 +1,92 @@
+name: ubuntu-x64
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+permissions:
+  actions: write
+
+jobs:
+  ubuntu-x64:
+    strategy:
+      fail-fast: false
+      matrix:
+        cmake_preset: [linux-gcc-x64, linux-clang-x64]
+        build_type: [Debug, Release, RelWithDebInfo, MinSizeRel]
+        build_shared: [ON, OFF]
+        use_blas_lapack: [OpenBLAS, OFF]
+        use_boost_unordered: [ON, OFF]
+
+    runs-on: ubuntu-24.04
+    name: ${{ matrix.cmake_preset }}.${{ matrix.build_type }}.build-shared-${{ matrix.build_shared }}.boost-unordered-${{ matrix.use_boost_unordered }}.blas-lapack-${{ matrix.use_blas_lapack }}
+    env:
+      GCC_VERSION: "14"
+      CLANG_VERSION: "21"
+
+    steps:
+      - name: Checkout repository
+        id: checkout-repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install gcc prerequisites on Linux (Ubuntu)
+        id: install-prerequisites-linux-gcc
+        if: matrix.cmake_preset == 'linux-gcc-x64'
+        run: |
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${{ env.GCC_VERSION }} ${{ env.GCC_VERSION }}
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-${{ env.GCC_VERSION }} ${{ env.GCC_VERSION }}
+          sudo update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-${{ env.GCC_VERSION }} ${{ env.GCC_VERSION }}
+          sudo update-alternatives --set gcc /usr/bin/gcc-${{ env.GCC_VERSION }}
+          sudo update-alternatives --set g++ /usr/bin/g++-${{ env.GCC_VERSION }}
+          sudo update-alternatives --set gfortran /usr/bin/gfortran-${{ env.GCC_VERSION }}
+        shell: bash
+
+      - name: Install clang prerequisites on Linux (Ubuntu)
+        id: install-prerequisites-linux-clang
+        if: matrix.cmake_preset == 'linux-clang-x64'
+        run: |
+          sudo bash -c "$(curl -fsSL https://apt.llvm.org/llvm.sh)" "" ${{ env.CLANG_VERSION }} all
+          sudo apt-get install -y flang-${{ env.CLANG_VERSION }} libflang-${{ env.CLANG_VERSION }}-dev
+          sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${{ env.CLANG_VERSION }} ${{ env.CLANG_VERSION }}
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${{ env.CLANG_VERSION }} ${{ env.CLANG_VERSION }}
+          sudo update-alternatives --install /usr/bin/flang flang /usr/bin/flang-${{ env.CLANG_VERSION }} ${{ env.CLANG_VERSION }}
+          sudo update-alternatives --install /usr/bin/lld lld /usr/bin/lld-${{ env.CLANG_VERSION }} ${{ env.CLANG_VERSION }}
+          sudo update-alternatives --install /usr/bin/ld.lld ld.lld /usr/bin/ld.lld-${{ env.CLANG_VERSION }} ${{ env.CLANG_VERSION }}
+          sudo update-alternatives --set clang /usr/bin/clang-${{ env.CLANG_VERSION }}
+          sudo update-alternatives --set clang++ /usr/bin/clang++-${{ env.CLANG_VERSION }}
+          sudo update-alternatives --set flang /usr/bin/flang-${{ env.CLANG_VERSION }}
+          sudo update-alternatives --set lld /usr/bin/lld-${{ env.CLANG_VERSION }}
+          sudo update-alternatives --set ld.lld /usr/bin/ld.lld-${{ env.CLANG_VERSION }}
+        shell: bash
+
+      - name: Setup vcpkg
+        id: setup-vcpkg
+        uses: lukka/run-vcpkg@v11
+
+      - name: Install latest CMake and Ninja
+        id: install-cmake
+        uses: lukka/get-cmake@latest
+
+      - name: Setup ccache
+        id: setup-ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          store_cache: false
+          restore_cache: false
+          remove_stale_cache: true
+          override_cache_key: ccache_${{ matrix.cmake_preset }}_${{ matrix.build_type }}_build-shared-${{ matrix.build_shared }}_boost-unordered-${{ matrix.use_boost_unordered }}_blas-lapack-${{ matrix.use_blas_lapack }}
+
+      - name: Run CMake consuming CMakePresets.json for ${{ matrix.cmake_preset }} ${{ matrix.build_type }}
+        id: run-cmake
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ${{ matrix.cmake_preset }}
+          configurePresetAdditionalArgs: "['-DCMAKE_BUILD_TYPE=${{ matrix.build_type }}', '-DBUILD_SHARED_LIBS=${{ matrix.build_shared }}', '-DBOYLE_USE_BOOST_UNORDERED=${{ matrix.use_boost_unordered }}', '-DBOYLE_USE_BLAS_LAPACK=${{ matrix.use_blas_lapack }}']"
+          buildPreset: ${{ matrix.cmake_preset }}
+          buildPresetAdditionalArgs: "[]"
+          testPreset: ${{ matrix.cmake_preset }}
+          testPresetAdditionalArgs: "[]"

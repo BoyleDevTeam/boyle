@@ -1,0 +1,22 @@
+boyle_cxx_library(
+  NAME
+    cvxopm_qp_problem
+  HDRS
+    "qp_problem.hpp"
+  DEPS
+    Boost::serialization
+    common_aligned_allocator
+    math_concepts
+    math_dok_matrix
+    math_lil_matrix
+)
+
+boyle_cxx_library(
+  NAME
+    cvxopm_dense_problem
+  HDRS
+    "dense_problem.hpp"
+  DEPS
+    math_vectorx
+    math_mdfunction_proxy
+)

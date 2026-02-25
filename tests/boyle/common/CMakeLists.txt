@@ -1,0 +1,9 @@
+boyle_cxx_test(
+  NAME
+    common_fsm_test
+  SRCS
+    "fsm_test.cpp"
+  DEPS
+    common_fsm
+    common_logging
+)

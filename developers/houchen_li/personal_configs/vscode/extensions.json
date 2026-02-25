@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "ms-vscode.cpptools-extension-pack",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "jeff-hykin.better-cpp-syntax",
+    "cschlosser.doxdocgen",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "aaron-bond.better-comments",
+    "esbenp.prettier-vscode",
+    "amodio.gitlens"
+  ]
+}

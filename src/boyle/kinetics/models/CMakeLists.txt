@@ -1,0 +1,53 @@
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_cubic_acc_model
+  HDRS
+    "route_line_cubic_acc_model.hpp"
+  DEPS
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_motion
+    kinetics_fence
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_quintic_acc_model
+  HDRS
+    "route_line_quintic_acc_model.hpp"
+  DEPS
+    common_logging
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_motion
+    kinetics_fence
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_cubic_offset_model
+  HDRS
+    "route_line_cubic_offset_model.hpp"
+  DEPS
+    common_logging
+    math_piecewise_cubic_curve
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_path
+    kinetics_border
+)
+
+boyle_cxx_library(
+  NAME
+    kinetics_route_line_quintic_offset_model
+  HDRS
+    "route_line_quintic_offset_model.hpp"
+  DEPS
+    common_logging
+    math_piecewise_quintic_curve
+    cvxopm_qp_problem
+    cvxopm_osqp_solver
+    kinetics_path
+    kinetics_border
+)

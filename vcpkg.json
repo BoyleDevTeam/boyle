@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "boyle",
+  "version-string": "0.1.0",
+  "description": "The Fundamental Math Basis for Autonomous Driving Vehicles and Robotics.",
+  "homepage": "https://github.com/BoyleDevTeam/boyle",
+  "license": "BSD-3-Clause",
+  "dependencies": []
+}
