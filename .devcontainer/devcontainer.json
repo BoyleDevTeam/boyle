@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+  "name": "boyle",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".",
+    "args": {
+      "BASE_IMAGE": "gcc:15",
+      "GCC_MAJOR_VERSION": "15",
+      "CLANG_MAJOR_VERSION": "21",
+      "CMAKE_VERSION": "4.2.1"
+    },
+    "options": ["--squash"]
+  },
+  "image": "ghcr.io/boyledevteam/boyle:gcc-15_clang-21_0",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'runArgs' to send arguments to 'docker run'.
+  // "runArgs": [],
+  // Uncomment to connect as devcontainer instead. More info: https://aka.ms/dev-containers-non-root.
+  "containerUser": "devcontainer",
+  // "remoteUser": "devcontainer",
+  // Use 'containerEnv' to set environment variables in the container.
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}"
+  },
+  // "remoteEnv": {},
+  // Use 'mounts' to mount volumes into the container.
+  "mounts": [
+    "type=tmpfs,destination=/tmp,tmpfs-mode=1777",
+    "type=tmpfs,destination=/run,tmpfs-mode=1777",
+    "type=bind,source=/tmp/.X11-unix,destination=/tmp/.X11-unix,consistency=consistent"
+  ],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "",
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      // "settings": {},
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "ms-vscode.cpptools-extension-pack",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "jeff-hykin.better-cpp-syntax",
+        "cschlosser.doxdocgen",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "aaron-bond.better-comments",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}
